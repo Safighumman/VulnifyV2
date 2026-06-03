@@ -48,8 +48,9 @@ class Product:
         return ", ".join(self.cpe)
 
 
-# The catalogue: 25 widely used SMB software titles.
-# Covers all 12 entries in the project sample asset list plus 13 common extras.
+# The catalogue: 49 widely used software titles, each CPE target verified
+# against the real NVD feed. Covers all 12 entries in the project sample asset
+# list plus common SMB software and frequently exploited enterprise products.
 CATALOG: List[Product] = [
     # Sample asset list (Section 10 of the brief)
     Product(
@@ -213,6 +214,159 @@ CATALOG: List[Product] = [
         ["7-zip", "7zip", "seven zip", "7 zip"],
         ["7-zip:7-zip"],
         "Utility",
+    ),
+    # Verified expansion: widely run, frequently exploited enterprise software.
+    # Every CPE target below was confirmed present in the real 2024/2025 NVD feed.
+    Product(
+        "Microsoft Office",
+        ["microsoft office", "ms office", "office 2019", "office 2021",
+         "office ltsc", "word", "excel"],
+        ["microsoft:office", "microsoft:word", "microsoft:excel"],
+        "Productivity",
+    ),
+    Product(
+        "Microsoft Outlook",
+        ["microsoft outlook", "outlook"],
+        ["microsoft:outlook"],
+        "Email client",
+    ),
+    Product(
+        "Microsoft SharePoint",
+        ["microsoft sharepoint", "sharepoint", "sharepoint server"],
+        ["microsoft:sharepoint_server", "microsoft:sharepoint_enterprise_server"],
+        "Collaboration",
+    ),
+    Product(
+        "Atlassian Confluence",
+        ["atlassian confluence", "confluence", "confluence server",
+         "confluence data center"],
+        ["atlassian:confluence_server", "atlassian:confluence_data_center"],
+        "Collaboration",
+    ),
+    Product(
+        "Atlassian Jira",
+        ["atlassian jira", "jira", "jira software", "jira server"],
+        ["atlassian:jira_server", "atlassian:jira_data_center"],
+        "Collaboration",
+    ),
+    Product(
+        "Apache Tomcat",
+        ["apache tomcat", "tomcat"],
+        ["apache:tomcat"],
+        "Web server",
+    ),
+    Product(
+        "Apache Struts",
+        ["apache struts", "struts", "struts2"],
+        ["apache:struts"],
+        "Web framework",
+    ),
+    Product(
+        "Drupal",
+        ["drupal", "drupal core"],
+        ["drupal:drupal"],
+        "Content management",
+    ),
+    Product(
+        "Joomla",
+        ["joomla", "joomla cms"],
+        ["joomla:joomla*"],
+        "Content management",
+    ),
+    Product(
+        "Adobe ColdFusion",
+        ["adobe coldfusion", "coldfusion"],
+        ["adobe:coldfusion"],
+        "Web application platform",
+    ),
+    Product(
+        "GitLab",
+        ["gitlab", "gitlab ce", "gitlab ee", "gitlab community edition"],
+        ["gitlab:gitlab"],
+        "DevOps platform",
+    ),
+    Product(
+        "Jenkins",
+        ["jenkins", "jenkins ci", "jenkins automation server"],
+        ["jenkins:jenkins"],
+        "CI/CD",
+    ),
+    Product(
+        "Grafana",
+        ["grafana", "grafana labs"],
+        ["grafana:grafana"],
+        "Monitoring",
+    ),
+    Product(
+        "Elasticsearch",
+        ["elasticsearch", "elastic search", "elastic stack", "kibana", "elk"],
+        ["elastic:elasticsearch", "elastic:kibana"],
+        "Search platform",
+    ),
+    Product(
+        "Redis",
+        ["redis", "redis server"],
+        ["redis:redis"],
+        "Database",
+    ),
+    Product(
+        "MongoDB",
+        ["mongodb", "mongo db", "mongo"],
+        ["mongodb:mongodb"],
+        "Database",
+    ),
+    Product(
+        "Citrix NetScaler ADC",
+        ["citrix netscaler", "netscaler", "citrix adc",
+         "netscaler adc", "citrix gateway", "netscaler gateway", "citrixbleed"],
+        ["citrix:netscaler_application_delivery_controller",
+         "citrix:netscaler_gateway"],
+        "Network security",
+    ),
+    Product(
+        "Ivanti Connect Secure",
+        ["ivanti connect secure", "ivanti", "connect secure", "pulse secure",
+         "ivanti policy secure"],
+        ["ivanti:connect_secure", "ivanti:policy_secure"],
+        "Remote access",
+    ),
+    Product(
+        "Palo Alto PAN-OS",
+        ["palo alto", "pan-os", "panos", "globalprotect",
+         "palo alto networks"],
+        ["paloaltonetworks:pan-os", "paloaltonetworks:globalprotect"],
+        "Network security",
+    ),
+    Product(
+        "SonicWall SonicOS",
+        ["sonicwall", "sonicos", "sonicwall firewall"],
+        ["sonicwall:sonicos"],
+        "Network security",
+    ),
+    Product(
+        "Sophos Firewall",
+        ["sophos firewall", "sophos xg", "sophos xg firewall"],
+        ["sophos:firewall"],
+        "Network security",
+    ),
+    Product(
+        "OpenVPN",
+        ["openvpn", "open vpn", "openvpn connect"],
+        ["openvpn:openvpn", "openvpn:connect"],
+        "Remote access",
+    ),
+    Product(
+        "Progress MOVEit Transfer",
+        ["moveit", "moveit transfer", "progress moveit", "moveit automation"],
+        ["progress:moveit_transfer", "progress:moveit_automation"],
+        "Managed file transfer",
+    ),
+    Product(
+        "Veeam Backup & Replication",
+        ["veeam", "veeam backup", "veeam backup and replication",
+         "veeam backup & replication"],
+        ["veeam:backup", "veeam:veeam_backup_&_replication"],
+        "Backup",
     ),
 ]
 

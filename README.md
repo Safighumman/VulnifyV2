@@ -239,7 +239,7 @@ more.
 | Requirement | Status | Where |
 |-------------|--------|-------|
 | Load and parse a data feed | All three (NVD, KEV, EPSS) | `data_loader.py` |
-| Normalisation dictionary, 15 to 20 products | 25 verified products | `cpe_catalog.py` |
+| Normalisation dictionary, 15 to 20 products | 49 verified products | `cpe_catalog.py` |
 | Matching filters CVEs to the asset list | Done | `matcher.py` |
 | Apply EPSS and KEV to rank by urgency | Done | `ranking.py` |
 | Structured output (CSV or table) | CSV, console table | `report.py` |
