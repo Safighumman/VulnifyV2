@@ -201,9 +201,9 @@ textarea#assets:focus{outline:0;border-color:var(--brand)}
 .fcard .fp{font-size:10.5px;color:var(--faint)}
 .fcard .fstat{margin-left:auto;font-size:10.5px;font-weight:700;display:flex;align-items:center;gap:5px;text-transform:capitalize}
 .fcard .sdot{width:7px;height:7px;border-radius:50%;flex:none}
-.s-live .sdot,.s-completed .sdot{background:var(--ok);box-shadow:0 0 7px var(--ok)}
-.s-live{color:var(--ok)}.s-completed{color:var(--ok)}
-.s-syncing{color:var(--brand-3)}.s-syncing .sdot{background:var(--brand-3);animation:blink .8s infinite}
+.s-live .sdot,.s-completed .sdot,.s-loaded .sdot{background:var(--ok);box-shadow:0 0 7px var(--ok)}
+.s-live,.s-completed,.s-loaded{color:var(--ok)}
+.s-syncing,.s-scanning{color:var(--brand-3)}.s-syncing .sdot,.s-scanning .sdot{background:var(--brand-3);animation:blink .8s infinite}
 .s-offline{color:var(--amber)}.s-offline .sdot{background:var(--amber)}
 .s-error{color:var(--crit)}.s-error .sdot{background:var(--crit)}
 .s-idle{color:var(--faint)}.s-idle .sdot{background:var(--faint)}

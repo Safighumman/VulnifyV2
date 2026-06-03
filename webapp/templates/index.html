@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vulnify · Live CVE Intelligence</title>
-<meta name="description" content="Vulnify turns your software asset list into a live, prioritised CVE action list ranked by real-world exploitability, with risk mitigation and sector context.">
+<title>Vulnify · Offline CVE Intelligence</title>
+<meta name="description" content="Vulnify turns your software asset list into a prioritised CVE action list ranked by real-world exploitability, with risk mitigation and sector context. Offline by design: only the pre-downloaded NVD, CISA KEV and EPSS feeds are used.">
 <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 </head>
@@ -15,7 +15,7 @@
 <nav class="rail" id="rail">
   <a class="brand" href="#" onclick="return false">
     <span class="mark" id="brandMark"></span>
-    <span class="brandtext"><b>Vulnify</b><em>Live CVE Intelligence</em></span>
+    <span class="brandtext"><b>Vulnify</b><em>Offline CVE Intelligence</em></span>
   </a>
 
   <div class="navgroup">
@@ -59,7 +59,7 @@
 
   <div class="railfoot">
     <div class="nl" style="font-size:10.5px;color:var(--faint);line-height:1.5">
-      Sources: NVD · CISA KEV · EPSS<br>Live, with offline fallback.</div>
+      Sources: NVD · CISA KEV · EPSS<br>Offline. Pre-downloaded feeds only.</div>
   </div>
 </nav>
 
@@ -182,7 +182,7 @@
     <!-- Connectors -->
     <section class="view" id="view-connectors">
       <div class="view-head">
-        <div><h1>Connectors &amp; APIs</h1><p>The intelligence sources Vulnify ingests. Enable, tune, or add your own feed or API.</p></div>
+        <div><h1>Connectors &amp; APIs</h1><p>The pre-downloaded intelligence sources Vulnify ingests, all offline. Enable, tune, or add your own local feed file. <span class="src-note">No external network or API is ever called at run time, per the brief.</span></p></div>
         <button class="btn" id="addConnBtn"><span class="ic" data-ic="plus"></span> Add connector</button>
       </div>
       <div class="connform panel" id="connform" style="display:none">
@@ -190,15 +190,14 @@
         <div class="formgrid">
           <label>Name<input id="cf-name" placeholder="Internal CVE mirror"></label>
           <label>Provider<input id="cf-provider" placeholder="My organisation"></label>
-          <label>Source URL<input id="cf-url" placeholder="https://…/feed.json"></label>
+          <label>Local file path<input id="cf-url" placeholder="/path/to/local/feed.json"></label>
           <label>Format
             <select id="cf-format"><option value="json">JSON</option><option value="csv">CSV</option><option value="json.gz">JSON (gzip)</option><option value="csv.gz">CSV (gzip)</option></select></label>
           <label>Category<input id="cf-category" placeholder="Custom intelligence"></label>
-          <label>Poll interval (seconds)<input id="cf-interval" type="number" value="900" min="30"></label>
-          <label class="wide">Auth header (optional)<input id="cf-auth" placeholder="Authorization: Bearer …"></label>
+          <label>Re-scan interval (seconds)<input id="cf-interval" type="number" value="900" min="30"></label>
         </div>
         <div class="formfoot">
-          <span class="sub">Custom connectors are fetched best-effort and validated for reachability. They never run code.</span>
+          <span class="sub">Offline only: a connector reads a local file path. Vulnify never calls an external network or API at run time.</span>
           <button class="btn" id="connSave">Save connector</button>
         </div>
       </div>

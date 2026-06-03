@@ -2,34 +2,34 @@
 
 # Vulnify
 
-### Live CVE-to-Stack Intelligence Platform
+### Offline CVE-to-Stack Intelligence Platform
 
-Turn a list of the software you actually run into a **live**, prioritised,
-plain-English action list of the vulnerabilities that matter, ranked by
-real-world exploitability, with risk mitigation, sector context, and official
-documentation for every finding.
+Turn a list of the software you actually run into a prioritised, plain-English
+action list of the vulnerabilities that matter, ranked by real-world
+exploitability, with risk mitigation, sector context, and official documentation
+for every finding.
 
 </div>
 
 > A small IT administrator cannot filter hundreds of daily CVEs to the handful
-> that actually affect their systems. Vulnify does that for them, live, and
-> presents it as a clean, SOC-style intelligence platform.
+> that actually affect their systems. Vulnify does that for them and presents it
+> as a clean, SOC-style intelligence platform.
 
 Built for the CyberHack 2026 "CVE-to-My-Stack Translator" brief, then taken well
-beyond it into a full, **continuously ingesting** intelligence platform. A real
-bundled dataset ships in the repository so it works the moment you clone it, and
-a background engine upgrades it to live data the moment it can reach the
-network.
+beyond it. It is **offline by design**, exactly as the brief requires: no
+external vulnerability-data API is ever called at run time. A real bundled
+dataset ships in the repository so it works the moment you clone it, and a
+background watcher re-ingests the pre-downloaded feed files whenever they change.
 
 ## What makes it stand out
 
-* **Live ingestion, not a static page.** A background engine constantly polls
-  the brief's sources (NVD via the Fraunhofer FKIE mirror, the CISA KEV
-  catalogue, and EPSS) and streams new activity to the dashboard over
-  Server-Sent Events. New CISA KEV entries arrive as **Confirmed** exploitation;
-  rising EPSS scores and freshly published CVEs arrive as **Unconfirmed**
-  signals. If the network is unavailable it falls back to the bundled real
-  subset and upgrades itself the moment connectivity returns.
+* **Constant offline ingestion, not a static page.** A background watcher
+  re-reads the pre-downloaded feed files (NVD via the Fraunhofer FKIE
+  reconstruction, the CISA KEV catalogue, and EPSS) whenever they change and
+  streams new activity to the dashboard over Server-Sent Events. New CISA KEV
+  entries arrive as **Confirmed** exploitation; rising EPSS scores and newly
+  seen CVEs arrive as **Unconfirmed** signals. No external API is ever called at
+  run time; the feeds are staged ahead of time, per the brief's hard constraint.
 * **A SOC console, not a script.** Risk gauges, a sector × severity heatmap, a
   stylised threat map, a live confirmed/unconfirmed feed, confidence scoring,
   CWE weakness categorisation, and breakdowns by severity, sector, vendor,
@@ -80,7 +80,7 @@ expects:
 * **Imports & feeds.** Live ingestion health for every source, with how to act
   on each one.
 * **Settings.** Choose your sectors, the visible widgets, the default filter,
-  and toggle live ingestion. Saved to the workspace.
+  and toggle the background re-scan. Saved to the workspace.
 * **Normalisation catalogue.** The verified product-to-CPE knowledge base.
 
 ## How it works
@@ -106,10 +106,11 @@ A small, auditable pipeline. Each stage is its own module.
   Output          dashboard, console table, CSV, one page brief, JSON
 ```
 
-Alongside the request pipeline, a **live ingestion engine** runs in the
-background, polls the enabled connectors on their own cadences, diffs each feed
-against the previous snapshot, emits live events, and hot-swaps the cached corpus
-so analysis always reflects the freshest data.
+Alongside the request pipeline, an **offline ingestion engine** runs in the
+background, watches the local pre-downloaded feed files, diffs each feed against
+the previous snapshot when it changes, emits events, and hot-swaps the cached
+corpus so analysis always reflects the latest staged data. It never touches the
+network.
 
 ### Why normalisation is the whole game
 
@@ -139,35 +140,35 @@ confidence = NVD analysis status
 Urgency guarantees confirmed-exploited CVEs always sort to the top. Confidence
 expresses how complete and trustworthy each record is.
 
-## Data sources, live with offline fallback
+## Data sources (offline, pre-downloaded only)
 
-Vulnify uses **only the sources named in the project brief**. The direct
-official hosts for two of them are reached through their maintained GitHub
-mirrors, which is the same data on a host that works behind strict outbound
-allow-lists. The brief itself names the Fraunhofer FKIE GitHub repository as the
-recommended NVD source.
+Vulnify uses **only the sources named in the project brief** and, per the
+brief's hard constraint, reads them **only from local pre-downloaded files** at
+run time. No NVD, FIRST/EPSS, or CISA API is ever called while the app runs.
 
-| Feed | Live source | Bundled subset |
-|------|-------------|----------------|
-| NVD CVE | Fraunhofer FKIE reconstruction (GitHub releases) | 3,369 real CVEs touching catalogue vendors |
-| CISA KEV | CISA catalogue (CISAgov GitHub mirror) | All current entries, verbatim |
-| EPSS | FIRST.org EPSS (empiricalsec GitHub mirror) | Scores for every bundled CVE |
+| Feed | Provenance (pre-downloaded by the facilitator) | Bundled subset |
+|------|------------------------------------------------|----------------|
+| NVD CVE | Fraunhofer FKIE reconstruction | 3,369 real CVEs touching catalogue vendors |
+| CISA KEV | The official CISA catalogue | All current entries, verbatim |
+| EPSS | The official FIRST.org EPSS scores | Scores for every bundled CVE |
 
 Resolution is tiered and automatic:
 
-1. Full live feeds in `data/feeds/` (fetched on demand by the live engine, or by
-   `scripts/fetch_data.py`).
+1. Full feed files in `data/feeds/` if a facilitator has staged them (obtained
+   once, ahead of the session, with `scripts/fetch_data.py`).
 2. The real bundled subset in `data/bundled/` that ships with the repository.
 
 So the tool produces real results immediately after a clone, scales up to the
-complete live feeds with no code change, and never breaks when offline.
+complete feeds when they are staged locally, and never makes a network call at
+run time. `scripts/fetch_data.py` is a one-off preparation step, not part of the
+running application.
 
 ## Quick start
 
 ```bash
 pip install -r requirements.txt
 
-# Web platform (live ingestion starts automatically).
+# Web platform (offline ingestion of the local feeds starts automatically).
 python webapp/app.py        # then open http://127.0.0.1:5000
 
 # Command line, against the bundled real data.
@@ -178,10 +179,11 @@ python cli.py examples/smb_accountancy.txt --csv out.csv --brief brief.txt --jso
 
 ## Configuration
 
-* **Live ingestion** is on by default. Disable it with `VULNIFY_LIVE=0`, or from
-  the Settings view in the dashboard.
-* **Poll cadences** (seconds) are tunable: `VULNIFY_INTERVAL_KEV` (default 180),
-  `VULNIFY_INTERVAL_EPSS` (900), `VULNIFY_INTERVAL_NVD` (86400).
+* **Background re-scan** of the local feed files is on by default (no network).
+  Disable it with `VULNIFY_LIVE=0`, or from the Settings view in the dashboard.
+* **Re-scan cadences** (seconds) are tunable: `VULNIFY_INTERVAL_KEV` (default
+  180), `VULNIFY_INTERVAL_EPSS` (900), `VULNIFY_INTERVAL_NVD` (86400). These are
+  local file-change checks, not network calls.
 * **Connectors** you add in the dashboard are persisted to
   `data/config/connectors.json`; preferences to `data/config/preferences.json`.
 * **CVE years** are controlled by `CVE_YEARS` (default `2024,2025`).
@@ -194,7 +196,7 @@ Vulnify/
   requirements.txt
 
   cve_translator/              the core engine package
-    config.py                  paths, thresholds, ranking weights, live settings
+    config.py                  paths, thresholds, ranking weights, offline ingest
     cpe_catalog.py             verified normalisation catalogue
     normalization.py           fuzzy match messy names to canonical CPEs
     data_loader.py             read NVD, KEV (with official names), EPSS, assets
@@ -204,7 +206,7 @@ Vulnify/
     mitigation.py              per-CVE/per-feed risk mitigation, zero-day, docs
     geo.py                     vendor-HQ geography for the threat map
     connectors.py              configurable feed/API registry (persisted)
-    live_feed.py               background live ingestion engine + event stream
+    live_feed.py               offline ingestion engine (watches local feeds)
     analytics.py               dashboard aggregations (gauges, heatmap, sectors)
     feeds.py                   import and feed metadata
     risk_summary.py            plain-English summaries and actions
@@ -224,7 +226,7 @@ Vulnify/
   data/
     sample_asset_list.txt      the brief sample list
     bundled/                   real data subset, tracked, works offline
-    feeds/                     full live feeds, fetched on demand, not tracked
+    feeds/                     full pre-downloaded feeds (facilitator), not tracked
     config/                    connectors and preferences, not tracked
 
   examples/                    ready-made asset lists and sample outputs
@@ -248,8 +250,8 @@ more.
 | Stretch: combined CVSS and EPSS score | Done | `ranking.py` |
 | Stretch: version range matching | Done, plus Windows release logic | `matcher.py` |
 | Stretch: command line interface | Done | `cli.py` |
-| Extra: live ingestion + SSE, offline fallback | Done | `live_feed.py`, `app.py` |
-| Extra: live confirmed vs unconfirmed feed | Done | `live_feed.py` |
+| Extra: offline ingestion of pre-downloaded feeds + SSE (no external APIs) | Done | `live_feed.py`, `app.py` |
+| Extra: confirmed vs unconfirmed activity feed | Done | `live_feed.py` |
 | Extra: per-CVE and per-feed risk mitigation | Done | `mitigation.py` |
 | Extra: zero-day official name and detail | Done | `mitigation.py` |
 | Extra: organisation-sector categorisation | Done | `sectors.py` |
@@ -267,9 +269,9 @@ python -m pytest tests/ -q
 The suite covers normalisation (including the Windows release and vSphere suite
 cases), version range logic, ranking order, confidence scoring, dashboard
 aggregation (gauges, heatmap, sectors, threat map), sector classification, risk
-mitigation and zero-day detection, the connector registry, the live ingestion
-engine (offline), feed metadata, asset parsing, and a full end-to-end run against
-the bundled real data.
+mitigation and zero-day detection, the connector registry, the offline ingestion
+engine, feed metadata, asset parsing, and a full end-to-end run against the
+bundled real data.
 
 ## Known limitations
 

@@ -35,16 +35,18 @@ BUNDLED_NVD = BUNDLED_DIR / "nvd_cve_relevant.json.gz"
 BUNDLED_KEV = BUNDLED_DIR / "known_exploited_vulnerabilities.json"
 BUNDLED_EPSS = BUNDLED_DIR / "epss_scores.csv.gz"
 
-# Live import
-# The platform ingests live from the sources named in the project brief. The
-# direct official hosts (cisa.gov, epss.empiricalsecurity.com) are reached
-# through their maintained GitHub mirrors, which is the same data on a host that
-# works behind strict outbound allow-lists. The brief itself names the
-# Fraunhofer FKIE GitHub repository as the recommended NVD source. When the
-# network is unavailable the platform falls back to the bundled real subset, so
-# it always works offline and upgrades itself to live data when it can.
+# Offline ingestion
+# Per the brief's hard constraint, NO external vulnerability-data API is ever
+# called at run time. The platform ingests strictly from the pre-downloaded
+# local feed files (data/feeds/ when a facilitator has staged them, else the
+# bundled real subset). A background watcher re-reads a feed only when its local
+# file changes. The URLs below are provenance only: they record where each feed
+# is obtained during the one-off pre-event preparation (scripts/fetch_data.py)
+# and are never fetched while the application is running.
+# VULNIFY_LIVE toggles the background re-scan thread (which stays fully offline).
 LIVE_ENABLED_DEFAULT = os.environ.get("VULNIFY_LIVE", "1") != "0"
 
+# Upstream provenance for the facilitator's pre-event download (not used at run time).
 LIVE_KEV_URL = (
     "https://raw.githubusercontent.com/CISAgov/kev-data/develop/"
     "known_exploited_vulnerabilities.json"
@@ -58,13 +60,13 @@ LIVE_NVD_URL = (
     "CVE-{year}.json.xz"
 )
 
-# Poll intervals in seconds. KEV and EPSS are small and refresh often; the full
-# NVD corpus is large, so it syncs far less frequently and on demand.
+# Re-scan intervals in seconds: how often the watcher checks each local feed
+# file for changes. The large NVD corpus is checked far less often than the
+# small KEV and EPSS files. No network is involved; this is a local stat() check.
 LIVE_INTERVAL_KEV = int(os.environ.get("VULNIFY_INTERVAL_KEV", "180"))
 LIVE_INTERVAL_EPSS = int(os.environ.get("VULNIFY_INTERVAL_EPSS", "900"))
 LIVE_INTERVAL_NVD = int(os.environ.get("VULNIFY_INTERVAL_NVD", "86400"))
-LIVE_HTTP_TIMEOUT = int(os.environ.get("VULNIFY_HTTP_TIMEOUT", "45"))
-LIVE_EVENT_BUFFER = 200          # rolling live-event ring buffer size
+LIVE_EVENT_BUFFER = 200          # rolling event ring buffer size
 
 # Normalisation
 # rapidfuzz score (0 to 100). A user supplied name must match a catalogue
