@@ -1,0 +1,17 @@
+# Deliberately messy input to show the normalisation engine at work.
+# Misspellings, vendor quirks, odd casing, and renamed products.
+# Each of these still resolves to the correct CPE.
+office 365 business    Current
+WINDOWS 10 pro         22h2
+acrobat reader         2024.001
+vSphere                8.0
+chrome browser         latest
+open ssl               3.0.7
+apache2                2.4.57
+zoom workplace         5.17
+word press             6.4
+moodle lms             4.3
+mysql server           8.0
+node js                20
+fortigate              7.4
+SomeUnknownTool        1.0

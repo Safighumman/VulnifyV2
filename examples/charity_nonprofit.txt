@@ -1,0 +1,9 @@
+# Riverside Housing Trust. Quarterly Cyber Essentials check (Use Case 3).
+# Maintained part time by a volunteer. Names are informal on purpose.
+Office 365
+Windows 10
+Chrome
+Zoom 5.17
+WordPress 6.4
+Adobe Reader
+Firefox

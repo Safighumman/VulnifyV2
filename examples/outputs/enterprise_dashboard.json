@@ -1,0 +1,2177 @@
+{
+  "generated_by": "Lodestar 2.0",
+  "stats": {
+    "cve_records_scanned": 3369,
+    "kev_catalogue_size": 1610,
+    "epss_scores_loaded": 3369,
+    "assets_supplied": 23,
+    "assets_recognised": 23,
+    "relevant_cves": 2940,
+    "kev_matches": 81,
+    "timings": {
+      "normalise_s": 0.0,
+      "load_s": 0.295,
+      "match_s": 0.194,
+      "rank_s": 0.018
+    },
+    "import_jobs": [
+      {
+        "key": "nvd",
+        "source": "NVD CVE",
+        "provider": "Fraunhofer FKIE reconstruction",
+        "format": "JSON (.json.xz)",
+        "category": "Vulnerabilities",
+        "contributes": "CVE records, descriptions, CVSS scores, CPE applicability",
+        "confidence": "Authoritative",
+        "records": 3369,
+        "duration_s": 0.279,
+        "speed": 12071,
+        "status": "completed"
+      },
+      {
+        "key": "kev",
+        "source": "CISA KEV",
+        "provider": "Cybersecurity and Infrastructure Security Agency",
+        "format": "JSON",
+        "category": "Confirmed exploitation",
+        "contributes": "Known Exploited Vulnerabilities and ransomware flags",
+        "confidence": "Confirmed",
+        "records": 1610,
+        "duration_s": 0.009,
+        "speed": 173699,
+        "status": "completed"
+      },
+      {
+        "key": "epss",
+        "source": "EPSS",
+        "provider": "FIRST.org via empiricalsecurity",
+        "format": "CSV (.csv.gz)",
+        "category": "Exploitation forecast",
+        "contributes": "Daily exploitation probability and percentile",
+        "confidence": "Predictive",
+        "records": 3369,
+        "duration_s": 0.006,
+        "speed": 542148,
+        "status": "completed"
+      }
+    ]
+  },
+  "dashboard": {
+    "kpis": {
+      "relevant_cves": 2940,
+      "kev": 81,
+      "ransomware": 13,
+      "confirmed": 81,
+      "unconfirmed": 2859,
+      "critical": 124,
+      "high": 1678,
+      "medium": 1086,
+      "low": 52,
+      "assets_supplied": 23,
+      "assets_recognised": 23,
+      "assets_unrecognised": 0,
+      "avg_epss": 0.0289,
+      "max_epss": 0.9439,
+      "high_epss": 47,
+      "avg_confidence": 88,
+      "avg_cvss": 7.1
+    },
+    "severity": [
+      {
+        "label": "Critical",
+        "value": 124,
+        "color": "#ff2d55"
+      },
+      {
+        "label": "High",
+        "value": 1678,
+        "color": "#ff7a3c"
+      },
+      {
+        "label": "Medium",
+        "value": 1086,
+        "color": "#ffc24b"
+      },
+      {
+        "label": "Low",
+        "value": 52,
+        "color": "#3ba9ff"
+      }
+    ],
+    "epss_bands": [
+      {
+        "label": "Very high (>= 0.5)",
+        "value": 47
+      },
+      {
+        "label": "High (0.1 to 0.5)",
+        "value": 106
+      },
+      {
+        "label": "Moderate (0.01 to 0.1)",
+        "value": 536
+      },
+      {
+        "label": "Low (< 0.01)",
+        "value": 2251
+      }
+    ],
+    "status_split": [
+      {
+        "label": "Confirmed",
+        "value": 81,
+        "color": "#ff2d55"
+      },
+      {
+        "label": "Unconfirmed",
+        "value": 2859,
+        "color": "#3ba9ff"
+      }
+    ],
+    "by_category": [
+      {
+        "label": "Operating system",
+        "value": 1407
+      },
+      {
+        "label": "Web browser",
+        "value": 840
+      },
+      {
+        "label": "Productivity",
+        "value": 195
+      },
+      {
+        "label": "Database",
+        "value": 184
+      },
+      {
+        "label": "Network firmware",
+        "value": 119
+      },
+      {
+        "label": "Video conferencing",
+        "value": 78
+      },
+      {
+        "label": "Runtime",
+        "value": 38
+      },
+      {
+        "label": "Web server",
+        "value": 33
+      }
+    ],
+    "by_vendor": [
+      {
+        "label": "microsoft",
+        "value": 5175
+      },
+      {
+        "label": "google",
+        "value": 445
+      },
+      {
+        "label": "mozilla",
+        "value": 337
+      },
+      {
+        "label": "oracle",
+        "value": 178
+      },
+      {
+        "label": "zoom",
+        "value": 173
+      },
+      {
+        "label": "fortinet",
+        "value": 70
+      },
+      {
+        "label": "cisco",
+        "value": 49
+      },
+      {
+        "label": "php",
+        "value": 28
+      },
+      {
+        "label": "apache",
+        "value": 26
+      },
+      {
+        "label": "vmware",
+        "value": 21
+      }
+    ],
+    "by_cwe": [
+      {
+        "label": "CWE-416",
+        "name": "Use After Free",
+        "value": 460
+      },
+      {
+        "label": "CWE-122",
+        "name": "Heap-based Buffer Overflow",
+        "value": 318
+      },
+      {
+        "label": "CWE-125",
+        "name": "Out-of-bounds Read",
+        "value": 246
+      },
+      {
+        "label": "CWE-787",
+        "name": "Out-of-bounds Write",
+        "value": 145
+      },
+      {
+        "label": "CWE-400",
+        "name": "Uncontrolled Resource Consumption",
+        "value": 136
+      },
+      {
+        "label": "CWE-20",
+        "name": "Improper Input Validation",
+        "value": 116
+      },
+      {
+        "label": "CWE-843",
+        "name": "CWE-843",
+        "value": 105
+      },
+      {
+        "label": "CWE-362",
+        "name": "Race Condition",
+        "value": 100
+      }
+    ],
+    "pub_timeline": [
+      {
+        "date": "2024-01",
+        "value": 72
+      },
+      {
+        "date": "2024-02",
+        "value": 81
+      },
+      {
+        "date": "2024-03",
+        "value": 79
+      },
+      {
+        "date": "2024-04",
+        "value": 153
+      },
+      {
+        "date": "2024-05",
+        "value": 100
+      },
+      {
+        "date": "2024-06",
+        "value": 99
+      },
+      {
+        "date": "2024-07",
+        "value": 163
+      },
+      {
+        "date": "2024-08",
+        "value": 155
+      },
+      {
+        "date": "2024-09",
+        "value": 92
+      },
+      {
+        "date": "2024-10",
+        "value": 177
+      },
+      {
+        "date": "2024-11",
+        "value": 96
+      },
+      {
+        "date": "2024-12",
+        "value": 70
+      },
+      {
+        "date": "2025-01",
+        "value": 214
+      },
+      {
+        "date": "2025-02",
+        "value": 88
+      },
+      {
+        "date": "2025-03",
+        "value": 97
+      },
+      {
+        "date": "2025-04",
+        "value": 174
+      },
+      {
+        "date": "2025-05",
+        "value": 107
+      },
+      {
+        "date": "2025-06",
+        "value": 88
+      },
+      {
+        "date": "2025-07",
+        "value": 177
+      },
+      {
+        "date": "2025-08",
+        "value": 127
+      },
+      {
+        "date": "2025-09",
+        "value": 106
+      },
+      {
+        "date": "2025-10",
+        "value": 167
+      },
+      {
+        "date": "2025-11",
+        "value": 138
+      },
+      {
+        "date": "2025-12",
+        "value": 101
+      },
+      {
+        "date": "2026-01",
+        "value": 12
+      },
+      {
+        "date": "2026-02",
+        "value": 3
+      },
+      {
+        "date": "2026-04",
+        "value": 2
+      },
+      {
+        "date": "2026-05",
+        "value": 2
+      }
+    ],
+    "kev_timeline": [
+      {
+        "date": "2024-01",
+        "value": 1
+      },
+      {
+        "date": "2024-02",
+        "value": 4
+      },
+      {
+        "date": "2024-03",
+        "value": 1
+      },
+      {
+        "date": "2024-04",
+        "value": 1
+      },
+      {
+        "date": "2024-05",
+        "value": 6
+      },
+      {
+        "date": "2024-06",
+        "value": 2
+      },
+      {
+        "date": "2024-07",
+        "value": 3
+      },
+      {
+        "date": "2024-08",
+        "value": 8
+      },
+      {
+        "date": "2024-09",
+        "value": 3
+      },
+      {
+        "date": "2024-10",
+        "value": 5
+      },
+      {
+        "date": "2024-11",
+        "value": 4
+      },
+      {
+        "date": "2024-12",
+        "value": 2
+      },
+      {
+        "date": "2025-01",
+        "value": 3
+      },
+      {
+        "date": "2025-02",
+        "value": 4
+      },
+      {
+        "date": "2025-03",
+        "value": 9
+      },
+      {
+        "date": "2025-04",
+        "value": 2
+      },
+      {
+        "date": "2025-05",
+        "value": 6
+      },
+      {
+        "date": "2025-06",
+        "value": 2
+      },
+      {
+        "date": "2025-07",
+        "value": 2
+      },
+      {
+        "date": "2025-09",
+        "value": 2
+      },
+      {
+        "date": "2025-10",
+        "value": 5
+      },
+      {
+        "date": "2025-11",
+        "value": 2
+      },
+      {
+        "date": "2025-12",
+        "value": 3
+      },
+      {
+        "date": "2026-01",
+        "value": 1
+      }
+    ],
+    "top_assets": [
+      {
+        "asset": "Windows 11",
+        "cves": 1197,
+        "kev": 48
+      },
+      {
+        "asset": "Windows 10",
+        "cves": 1146,
+        "kev": 47
+      },
+      {
+        "asset": "Windows Server 2022",
+        "cves": 1289,
+        "kev": 46
+      },
+      {
+        "asset": "Windows Server 2019",
+        "cves": 1263,
+        "kev": 45
+      },
+      {
+        "asset": "Google Chrome",
+        "cves": 445,
+        "kev": 14
+      },
+      {
+        "asset": "VMware vSphere",
+        "cves": 18,
+        "kev": 7
+      },
+      {
+        "asset": "Microsoft Edge",
+        "cves": 72,
+        "kev": 4
+      },
+      {
+        "asset": "Fortinet FortiOS",
+        "cves": 70,
+        "kev": 3
+      },
+      {
+        "asset": "Microsoft 365 Apps",
+        "cves": 195,
+        "kev": 2
+      },
+      {
+        "asset": "Mozilla Firefox",
+        "cves": 327,
+        "kev": 1
+      },
+      {
+        "asset": "Cisco IOS XE",
+        "cves": 49,
+        "kev": 1
+      },
+      {
+        "asset": "PHP",
+        "cves": 28,
+        "kev": 1
+      }
+    ],
+    "confidence_bands": [
+      {
+        "label": "High",
+        "value": 2940
+      }
+    ]
+  },
+  "results": [
+    {
+      "rank": 1,
+      "cve_id": "CVE-2024-4577",
+      "asset": "PHP",
+      "asset_raw": "PHP",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.9439",
+      "epss_raw": 0.94393,
+      "epss_pct": 100.0,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-06-12",
+      "kev_desc": "PHP, specifically Windows-based PHP used in CGI mode, contains an OS command injection vulnerability that allows for arbitrary code execution. This vulnerability is a patch bypass for CVE-2012-1823.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.9548,
+      "cpe": [
+        "php:php"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-78",
+          "name": "OS Command Injection"
+        }
+      ],
+      "description": "In PHP versions\u00a08.1.* before 8.1.29, 8.2.* before 8.2.20, 8.3.* before 8.3.8, when using Apache and PHP-CGI on Windows, if the system is set up to use certain code pages, Windows may use \"Best-Fit\" behavior to replace characters in command line given to\u00a0Win32 API functions. PHP CGI module may misinterpret those characters as PHP options, which may allow a malicious user to pass options to PHP binary being run, and thus reveal the source code of scripts, run arbitrary PHP code on the server, etc.",
+      "references": [
+        "http://www.openwall.com/lists/oss-security/2024/06/07/1",
+        "https://arstechnica.com/security/2024/06/php-vulnerability-allows-attackers-to-run-malicious-code-on-windows-servers/",
+        "https://blog.orange.tw/2024/06/cve-2024-4577-yet-another-php-rce.html",
+        "https://cert.be/en/advisory/warning-php-remote-code-execution-patch-immediately",
+        "https://devco.re/blog/2024/06/06/security-alert-cve-2024-4577-php-cgi-argument-injection-vulnerability-en/",
+        "https://github.com/11whoami99/CVE-2024-4577"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-06-09T20:15:09.550",
+      "last_modified": "2025-11-03T19:23:39.437",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-4577 affects PHP and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (94.4 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 2,
+      "cve_id": "CVE-2024-21762",
+      "asset": "Fortinet FortiOS",
+      "asset_raw": "Fortinet FortiOS",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.9252",
+      "epss_raw": 0.92522,
+      "epss_pct": 99.7,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-02-09",
+      "kev_desc": "Fortinet FortiOS contains an out-of-bound write vulnerability that allows a remote unauthenticated attacker to execute code or commands via specially crafted HTTP requests.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.9417,
+      "cpe": [
+        "fortinet:fortios"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-787",
+          "name": "Out-of-bounds Write"
+        }
+      ],
+      "description": "A out-of-bounds write in Fortinet FortiOS versions 7.4.0 through 7.4.2, 7.2.0 through 7.2.6, 7.0.0 through 7.0.13, 6.4.0 through 6.4.14, 6.2.0 through 6.2.15, 6.0.0 through 6.0.17, FortiProxy versions 7.4.0 through 7.4.2, 7.2.0 through 7.2.8, 7.0.0 through 7.0.14, 2.0.0 through 2.0.13, 1.2.0 through 1.2.13, 1.1.0 through 1.1.6, 1.0.0 through 1.0.7 allows attacker to execute unauthorized code or commands via specifically crafted requests",
+      "references": [
+        "https://fortiguard.com/psirt/FG-IR-24-015",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-02-09T09:15:08.087",
+      "last_modified": "2025-10-24T12:54:44.420",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-21762 affects Fortinet FortiOS and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (92.5 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 3,
+      "cve_id": "CVE-2024-21412",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "8.1",
+      "cvss_raw": 8.1,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+      "cvss_version": "3.1",
+      "epss": "0.9378",
+      "epss_raw": 0.93785,
+      "epss_pct": 99.9,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-02-13",
+      "kev_desc": "Microsoft Windows Internet Shortcut Files contains an unspecified vulnerability that allows for a security feature bypass.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.8995,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-693",
+          "name": "CWE-693"
+        }
+      ],
+      "description": "Internet Shortcut Files Security Feature Bypass Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21412",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21412"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-02-13T18:15:59.903",
+      "last_modified": "2025-10-28T14:34:20.343",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-21412 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 8.1). EPSS puts exploitation at a high probability (93.8 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 4,
+      "cve_id": "CVE-2024-30088",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.0",
+      "cvss_raw": 7.0,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.8808",
+      "epss_raw": 0.8808,
+      "epss_pct": 99.5,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-10-15",
+      "kev_desc": "Microsoft Windows Kernel contains a time-of-check to time-of-use (TOCTOU) race condition vulnerability that could allow for privilege escalation. ",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.8266,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-367",
+          "name": "CWE-367"
+        }
+      ],
+      "description": "Windows Kernel Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30088",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-30088"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-06-11T17:15:56.810",
+      "last_modified": "2025-10-28T14:23:45.663",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-30088 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.0). EPSS puts exploitation at a high probability (88.1 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 5,
+      "cve_id": "CVE-2024-21338",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.7957",
+      "epss_raw": 0.79569,
+      "epss_pct": 99.1,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-03-04",
+      "kev_desc": "Microsoft Windows Kernel contains an exposed IOCTL with insufficient access control vulnerability within the IOCTL (input and output control) dispatcher in appid.sys that allows a local attacker to achieve privilege escalation.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.791,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-822",
+          "name": "CWE-822"
+        }
+      ],
+      "description": "Windows Kernel Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21338",
+        "https://decoded.avast.io/janvojtesek/lazarus-and-the-fudmodule-rootkit-beyond-byovd-with-an-admin-to-kernel-zero-day/",
+        "https://packetstorm.news/files/id/190586/",
+        "https://www.exploit-db.com/exploits/52275",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21338"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-02-13T18:15:49.083",
+      "last_modified": "2025-10-28T14:34:50.100",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-21338 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (79.6 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 6,
+      "cve_id": "CVE-2024-37085",
+      "asset": "VMware vSphere",
+      "asset_raw": "VMware vSphere",
+      "status": "Confirmed",
+      "cvss": "6.8",
+      "cvss_raw": 6.8,
+      "cvss_severity": "MEDIUM",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.7912",
+      "epss_raw": 0.7912,
+      "epss_pct": 99.1,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-07-30",
+      "kev_desc": "VMware ESXi contains an authentication bypass vulnerability. A malicious actor with sufficient Active Directory (AD) permissions can gain full access to an ESXi host that was previously configured to use AD for user management by re-creating the configured AD group ('ESXi Admins' by default) after it was deleted from AD.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.7578,
+      "cpe": [
+        "vmware:esxi"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-287",
+          "name": "Improper Authentication"
+        },
+        {
+          "id": "CWE-305",
+          "name": "CWE-305"
+        }
+      ],
+      "description": "VMware ESXi contains an authentication bypass vulnerability.\u00a0A malicious actor with sufficient Active Directory (AD) permissions can gain full access to an ESXi host that was previously  configured to use AD for user management https://blogs.vmware.com/vsphere/2012/09/joining-vsphere-hosts-to-active-directory.html  by re-creating the configured AD group ('ESXi Admins' by default) after it was deleted from AD.",
+      "references": [
+        "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/24505",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-37085"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-06-25T15:15:12.377",
+      "last_modified": "2025-10-30T19:52:34.230",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-37085 affects VMware vSphere and carries a medium severity rating (CVSS 6.8). EPSS puts exploitation at a high probability (79.1 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 7,
+      "cve_id": "CVE-2024-49039",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "8.8",
+      "cvss_raw": 8.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.6367",
+      "epss_raw": 0.63673,
+      "epss_pct": 98.4,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-11-12",
+      "kev_desc": "Microsoft Windows Task Scheduler contains a privilege escalation vulnerability that can allow an attacker-provided, local application to escalate privileges outside of its AppContainer, and access privileged RPC functions.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.7097,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-287",
+          "name": "Improper Authentication"
+        }
+      ],
+      "description": "Windows Task Scheduler Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-49039",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-49039"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-11-12T18:15:44.160",
+      "last_modified": "2025-10-28T14:15:09.677",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-49039 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a high probability (63.7 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 8,
+      "cve_id": "CVE-2024-30051",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.5093",
+      "epss_raw": 0.50931,
+      "epss_pct": 97.9,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-05-14",
+      "kev_desc": "Microsoft DWM Core Library contains a privilege escalation vulnerability that allows an attacker to gain SYSTEM privileges.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.5905,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-122",
+          "name": "Heap-based Buffer Overflow"
+        },
+        {
+          "id": "CWE-787",
+          "name": "Out-of-bounds Write"
+        }
+      ],
+      "description": "Windows DWM Core Library Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30051",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-30051"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-05-14T17:17:21.763",
+      "last_modified": "2025-10-28T14:23:49.223",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-30051 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (50.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 9,
+      "cve_id": "CVE-2025-26633",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.0",
+      "cvss_raw": 7.0,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.4398",
+      "epss_raw": 0.43979,
+      "epss_pct": 97.6,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2025-03-11",
+      "kev_desc": "Microsoft Windows Management Console (MMC) contains an improper neutralization vulnerability that allows an unauthorized attacker to bypass a security feature locally.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.5179,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-707",
+          "name": "CWE-707"
+        }
+      ],
+      "description": "Improper neutralization in Microsoft Management Console allows an unauthorized attacker to bypass a security feature locally.",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-26633",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-26633-security-feature-bypass-in-microsoft-management-console-detection-script",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-26633-security-feature-bypass-in-microsoft-management-console-mitigation-script",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-26633"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-03-11T17:16:43.390",
+      "last_modified": "2025-10-27T17:13:29.327",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2025-26633 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.0). EPSS puts exploitation at a moderate probability (44.0 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 10,
+      "cve_id": "CVE-2024-9680",
+      "asset": "Mozilla Firefox",
+      "asset_raw": "Mozilla Firefox",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.3081",
+      "epss_raw": 0.30808,
+      "epss_pct": 96.8,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-10-15",
+      "kev_desc": "Mozilla Firefox and Firefox ESR contain a use-after-free vulnerability in Animation timelines that allows for code execution in the content process.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.5097,
+      "cpe": [
+        "mozilla:firefox"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-416",
+          "name": "Use After Free"
+        }
+      ],
+      "description": "An attacker was able to achieve code execution in the content process by exploiting a use-after-free in Animation timelines. We have had reports of this vulnerability being exploited in the wild. This vulnerability affects Firefox < 131.0.2, Firefox ESR < 128.3.1, Firefox ESR < 115.16.1, Thunderbird < 131.0.1, Thunderbird < 128.3.1, and Thunderbird < 115.16.0.",
+      "references": [
+        "https://bugzilla.mozilla.org/show_bug.cgi?id=1923344",
+        "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-49039",
+        "https://www.mozilla.org/security/advisories/mfsa2024-51/",
+        "https://www.mozilla.org/security/advisories/mfsa2024-52/",
+        "https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=281992",
+        "https://lists.debian.org/debian-lts-announce/2024/10/msg00005.html"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-10-09T13:15:12.090",
+      "last_modified": "2025-11-04T14:35:50.977",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-9680 affects Mozilla Firefox and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a moderate probability (30.8 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 11,
+      "cve_id": "CVE-2024-26169",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.3515",
+      "epss_raw": 0.35146,
+      "epss_pct": 97.1,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2024-06-13",
+      "kev_desc": "Microsoft Windows Error Reporting Service contains an improper privilege management vulnerability that allows a local attacker with user permissions to gain SYSTEM privileges.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.48,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-269",
+          "name": "Improper Privilege Management"
+        }
+      ],
+      "description": "Windows Error Reporting Service Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-26169",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-26169"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-03-12T17:15:56.173",
+      "last_modified": "2025-10-28T14:24:13.153",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2024-26169 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a moderate probability (35.1 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 12,
+      "cve_id": "CVE-2025-22225",
+      "asset": "VMware vSphere",
+      "asset_raw": "VMware vSphere",
+      "status": "Confirmed",
+      "cvss": "8.2",
+      "cvss_raw": 8.2,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.0978",
+      "epss_raw": 0.09781,
+      "epss_pct": 93.1,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2025-03-04",
+      "kev_desc": "VMware ESXi contains an arbitrary write vulnerability. Successful exploitation allows an attacker with privileges within the VMX process to trigger an arbitrary kernel write leading to an escape of the sandbox.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.3145,
+      "cpe": [
+        "vmware:esxi",
+        "vmware:cloud_foundation"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-787",
+          "name": "Out-of-bounds Write"
+        },
+        {
+          "id": "CWE-123",
+          "name": "CWE-123"
+        }
+      ],
+      "description": "VMware ESXi contains an arbitrary write\u00a0vulnerability.\u00a0A malicious actor with privileges within the VMX process may trigger an arbitrary kernel write leading to an escape of the sandbox.",
+      "references": [
+        "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/25390",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-22225"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-03-04T12:15:33.840",
+      "last_modified": "2025-10-30T19:52:45.300",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2025-22225 affects VMware vSphere and carries a high severity rating (CVSS 8.2). EPSS puts exploitation at a low probability (9.8 percent in the next 30 days, higher than 93 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 13,
+      "cve_id": "CVE-2025-29824",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.0092",
+      "epss_raw": 0.00922,
+      "epss_pct": 76.3,
+      "kev": true,
+      "ransomware": true,
+      "kev_date": "2025-04-08",
+      "kev_desc": "Microsoft Windows Common Log File System (CLFS) Driver contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 110.2405,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-416",
+          "name": "Use After Free"
+        }
+      ],
+      "description": "Use after free in Windows Common Log File System Driver allows an authorized attacker to elevate privileges locally.",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-29824",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-29824-windows-common-log-file-system-driver-elevation-of-privilege-vulnerability-detection-script",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-29824-windows-common-log-file-system-driver-elevation-of-privilege-vulnerability-mitigation-script",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-29824"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-04-08T18:16:08.340",
+      "last_modified": "2025-10-27T17:14:21.950",
+      "action": "Patch immediately: actively exploited in ransomware campaigns.",
+      "summary": "CVE-2025-29824 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a low probability (0.9 percent in the next 30 days, higher than 76 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns."
+    },
+    {
+      "rank": 14,
+      "cve_id": "CVE-2024-21413",
+      "asset": "Microsoft 365 Apps",
+      "asset_raw": "Microsoft 365 Apps for Business",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.9299",
+      "epss_raw": 0.92992,
+      "epss_pct": 99.8,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-02-06",
+      "kev_desc": "Microsoft Outlook contains an improper input validation vulnerability that allows for remote code execution. Successful exploitation of this vulnerability would allow an attacker to bypass the Office Protected View and open in editing mode rather than protected mode.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.9449,
+      "cpe": [
+        "microsoft:365_apps"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-20",
+          "name": "Improper Input Validation"
+        }
+      ],
+      "description": "Microsoft Outlook Remote Code Execution Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21413",
+        "https://research.checkpoint.com/2024/the-risks-of-the-monikerlink-bug-in-microsoft-outlook-and-the-big-picture/",
+        "https://www.vicarius.io/vsociety/posts/cve-2024-21413-critical-monikerlink-vulnerability-affecting-microsoft-outlook-detection-script",
+        "https://www.vicarius.io/vsociety/posts/cve-2024-21413-critical-monikerlink-vulnerability-affecting-microsoft-outlook-mitigation-script",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21413"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-02-13T18:16:00.137",
+      "last_modified": "2025-10-28T14:36:10.643",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-21413 affects Microsoft 365 Apps and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (93.0 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 15,
+      "cve_id": "CVE-2024-38475",
+      "asset": "Apache HTTP Server",
+      "asset_raw": "Apache HTTP Server",
+      "status": "Confirmed",
+      "cvss": "9.1",
+      "cvss_raw": 9.1,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+      "cvss_version": "3.1",
+      "epss": "0.9386",
+      "epss_raw": 0.93858,
+      "epss_pct": 99.9,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-05-01",
+      "kev_desc": "Apache HTTP Server contains an improper escaping of output vulnerability in mod_rewrite that allows an attacker to map URLs to filesystem locations that are permitted to be served by the server but are not intentionally/directly reachable by any URL, resulting in code execution or source code disclosure.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.93,
+      "cpe": [
+        "apache:http_server"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-116",
+          "name": "CWE-116"
+        }
+      ],
+      "description": "Improper escaping of output in mod_rewrite in Apache HTTP Server 2.4.59 and earlier allows an attacker to map URLs to filesystem locations that are\u00a0permitted to be served by the server but are not intentionally/directly reachable by any URL, resulting in code execution or source code disclosure. \n\nSubstitutions in\u00a0server context that use a backreferences or variables as the first segment of the substitution are affected.\u00a0 Some unsafe RewiteRules will be broken by this change and the rewrite flag \"UnsafePrefixStat\" can be used to opt back in once ensuring the substitution is appropriately constrained.",
+      "references": [
+        "https://httpd.apache.org/security/vulnerabilities_24.html",
+        "https://security.netapp.com/advisory/ntap-20240712-0001/",
+        "http://www.openwall.com/lists/oss-security/2024/07/01/8",
+        "https://github.com/apache/httpd/commit/9a6157d1e2f7ab15963020381054b48782bc18cf",
+        "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0018"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-07-01T19:15:04.883",
+      "last_modified": "2025-11-17T21:49:55.247",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-38475 affects Apache HTTP Server and carries a critical severity rating (CVSS 9.1). EPSS puts exploitation at a high probability (93.9 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 16,
+      "cve_id": "CVE-2024-38112",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.5",
+      "cvss_raw": 7.5,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.9296",
+      "epss_raw": 0.92959,
+      "epss_pct": 99.8,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-07-09",
+      "kev_desc": "Microsoft Windows MSHTML Platform contains a spoofing vulnerability that has a high impact to confidentiality, integrity, and availability.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.8757,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-451",
+          "name": "CWE-451"
+        }
+      ],
+      "description": "Windows MSHTML Platform Spoofing Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38112",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-38112"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-07-09T17:15:47.860",
+      "last_modified": "2025-10-28T14:23:12.990",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-38112 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.5). EPSS puts exploitation at a high probability (93.0 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 17,
+      "cve_id": "CVE-2024-37079",
+      "asset": "VMware vSphere",
+      "asset_raw": "VMware vSphere",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.8228",
+      "epss_raw": 0.82279,
+      "epss_pct": 99.2,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2026-01-23",
+      "kev_desc": "Broadcom VMware vCenter Server contains an out-of-bounds write vulnerability in the implementation of the DCERPC protocol. This could allow a malicious actor with network access to vCenter Server to send specially crafted network packets, potentially leading to remote code execution.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.87,
+      "cpe": [
+        "vmware:vcenter_server"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-787",
+          "name": "Out-of-bounds Write"
+        }
+      ],
+      "description": "vCenter Server contains a heap-overflow vulnerability in the implementation of the DCERPC protocol. A malicious actor with network access to vCenter Server may trigger this vulnerability by sending a specially crafted network packet potentially leading to remote code execution.",
+      "references": [
+        "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/24453",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-37079"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-06-18T06:15:11.350",
+      "last_modified": "2026-01-26T14:52:05.833",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-37079 affects VMware vSphere and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (82.3 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 18,
+      "cve_id": "CVE-2024-49138",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.8695",
+      "epss_raw": 0.86946,
+      "epss_pct": 99.5,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-12-10",
+      "kev_desc": "Microsoft Windows Common Log File System (CLFS) driver contains a heap-based buffer overflow vulnerability that allows a local attacker to escalate privileges.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.8426,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-122",
+          "name": "Heap-based Buffer Overflow"
+        }
+      ],
+      "description": "Windows Common Log File System Driver Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-49138",
+        "https://packetstorm.news/files/id/190585/",
+        "https://www.exploit-db.com/exploits/52270",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-49138"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-12-12T02:04:40.307",
+      "last_modified": "2025-10-28T14:15:02.983",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-49138 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (86.9 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 19,
+      "cve_id": "CVE-2024-38812",
+      "asset": "VMware vSphere",
+      "asset_raw": "VMware vSphere",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.7787",
+      "epss_raw": 0.77869,
+      "epss_pct": 99.0,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-11-20",
+      "kev_desc": "VMware vCenter Server contains a heap-based buffer overflow vulnerability in the implementation of the DCERPC protocol. This vulnerability could allow an attacker with network access to the vCenter Server to execute remote code by sending a specially crafted packet.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.8391,
+      "cpe": [
+        "vmware:vcenter_server"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-122",
+          "name": "Heap-based Buffer Overflow"
+        },
+        {
+          "id": "CWE-787",
+          "name": "Out-of-bounds Write"
+        }
+      ],
+      "description": "The\u00a0vCenter Server contains a heap-overflow vulnerability in the implementation of the DCERPC protocol.\u00a0A malicious actor with network access to vCenter Server may trigger this vulnerability by sending a specially crafted network packet potentially leading to remote code execution.",
+      "references": [
+        "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/24968",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-38812"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-09-17T18:15:03.920",
+      "last_modified": "2025-10-31T15:57:11.573",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-38812 affects VMware vSphere and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (77.9 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 20,
+      "cve_id": "CVE-2024-43451",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "6.5",
+      "cvss_raw": 6.5,
+      "cvss_severity": "MEDIUM",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "cvss_version": "3.1",
+      "epss": "0.9031",
+      "epss_raw": 0.90313,
+      "epss_pct": 99.6,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-11-12",
+      "kev_desc": "Microsoft Windows contains an NTLMv2 hash spoofing vulnerability that could result in disclosing a user's NTLMv2 hash to an attacker via a file open operation. The attacker could then leverage this hash to impersonate that user.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.8272,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-73",
+          "name": "CWE-73"
+        }
+      ],
+      "description": "NTLM Hash Disclosure Spoofing Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43451",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-43451"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-11-12T18:15:22.483",
+      "last_modified": "2025-10-28T14:15:30.907",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-43451 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a medium severity rating (CVSS 6.5). EPSS puts exploitation at a high probability (90.3 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 21,
+      "cve_id": "CVE-2025-59287",
+      "asset": "Windows Server 2022; Windows Server 2019",
+      "asset_raw": "Windows Server 2022; Windows Server 2019",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.7270",
+      "epss_raw": 0.72697,
+      "epss_pct": 98.8,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-10-24",
+      "kev_desc": "Microsoft Windows Server Update Service (WSUS) contains a deserialization of untrusted data vulnerability that allows for remote code execution.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.8029,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-502",
+          "name": "Deserialization of Untrusted Data"
+        }
+      ],
+      "description": "Deserialization of untrusted data in Windows Server Update Service allows an unauthorized attacker to execute code over a network.",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-59287",
+        "https://hawktrace.com/blog/CVE-2025-59287",
+        "https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-windows-server-wsus-flaw-exploited-in-attacks/",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-59287-detection-script-rce-vulnerability-in-windows-server-update-service",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-59287-mitigation-script-rce-vulnerability-in-windows-server-update-service",
+        "https://gist.github.com/hawktrace/880b54fb9c07ddb028baaae401bd3951"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-10-14T17:16:11.670",
+      "last_modified": "2025-11-12T14:33:19.727",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2025-59287 affects Windows Server 2022; Windows Server 2019 and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (72.7 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 22,
+      "cve_id": "CVE-2025-21333",
+      "asset": "Windows 11; Windows 10",
+      "asset_raw": "Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.7969",
+      "epss_raw": 0.79693,
+      "epss_pct": 99.1,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-01-14",
+      "kev_desc": "Microsoft Windows Hyper-V NT Kernel Integration VSP contains a heap-based buffer overflow vulnerability that allows a local attacker to gain SYSTEM privileges.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.7919,
+      "cpe": [
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-122",
+          "name": "Heap-based Buffer Overflow"
+        }
+      ],
+      "description": "Windows Hyper-V NT Kernel Integration VSP Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21333",
+        "https://www.exploit-db.com/exploits/52436",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-21333-elevated-privilege-exposure-in-windows-hyper-v-by-microsoft-detection-script",
+        "https://www.vicarius.io/vsociety/posts/cve-2025-21333-elevated-privilege-exposure-in-windows-hyper-v-by-microsoft-mitigation-script",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-21333"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-01-14T18:15:58.530",
+      "last_modified": "2025-11-03T15:08:08.450",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2025-21333 affects Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (79.7 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 23,
+      "cve_id": "CVE-2024-38193",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.7323",
+      "epss_raw": 0.73233,
+      "epss_pct": 98.8,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-08-13",
+      "kev_desc": "Microsoft Windows Ancillary Function Driver for WinSock contains an unspecified vulnerability that allows for privilege escalation, enabling a local attacker to gain SYSTEM privileges.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.7466,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-416",
+          "name": "Use After Free"
+        }
+      ],
+      "description": "Windows Ancillary Function Driver for WinSock Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38193",
+        "https://www.exploit-db.com/exploits/52284",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-38193"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-08-13T18:15:28.230",
+      "last_modified": "2025-10-28T14:18:22.977",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-38193 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (73.2 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 24,
+      "cve_id": "CVE-2024-29988",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "8.8",
+      "cvss_raw": 8.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.6050",
+      "epss_raw": 0.60504,
+      "epss_pct": 98.3,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-04-30",
+      "kev_desc": "Microsoft SmartScreen Prompt contains a security feature bypass vulnerability that allows an attacker to bypass the Mark of the Web (MotW) feature. This vulnerability can be chained with CVE-2023-38831 and CVE-2024-21412 to execute a malicious file.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.6875,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-693",
+          "name": "CWE-693"
+        }
+      ],
+      "description": "SmartScreen Prompt Security Feature Bypass Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29988",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-29988"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-04-09T17:16:01.830",
+      "last_modified": "2025-10-28T14:23:56.820",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-29988 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a high probability (60.5 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 25,
+      "cve_id": "CVE-2024-23113",
+      "asset": "Fortinet FortiOS",
+      "asset_raw": "Fortinet FortiOS",
+      "status": "Confirmed",
+      "cvss": "9.8",
+      "cvss_raw": 9.8,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.5438",
+      "epss_raw": 0.5438,
+      "epss_pct": 98.1,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-10-09",
+      "kev_desc": "Fortinet FortiOS, FortiPAM, FortiProxy, and FortiWeb contain a format string vulnerability that allows a remote, unauthenticated attacker to execute arbitrary code or commands via specially crafted requests.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.6747,
+      "cpe": [
+        "fortinet:fortios"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-134",
+          "name": "CWE-134"
+        }
+      ],
+      "description": "A use of externally-controlled format string in Fortinet FortiOS versions 7.4.0 through 7.4.2, 7.2.0 through 7.2.6, 7.0.0 through 7.0.13, FortiProxy versions 7.4.0 through 7.4.2, 7.2.0 through 7.2.8, 7.0.0 through 7.0.14, FortiPAM versions 1.2.0, 1.1.0 through 1.1.2, 1.0.0 through 1.0.3, FortiSwitchManager versions 7.2.0 through 7.2.3, 7.0.0 through 7.0.3 allows attacker to execute unauthorized code or commands via specially crafted packets.",
+      "references": [
+        "https://fortiguard.com/psirt/FG-IR-24-029",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-23113"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-02-15T14:15:46.503",
+      "last_modified": "2025-10-24T12:54:40.720",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-23113 affects Fortinet FortiOS and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (54.4 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 26,
+      "cve_id": "CVE-2024-35250",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "7.8",
+      "cvss_raw": 7.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.5491",
+      "epss_raw": 0.54913,
+      "epss_pct": 98.1,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-12-16",
+      "kev_desc": "Microsoft Windows Kernel-Mode Driver contains an untrusted pointer dereference vulnerability that allows a local attacker to escalate privileges.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.6184,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-822",
+          "name": "CWE-822"
+        }
+      ],
+      "description": "Windows Kernel-Mode Driver Elevation of Privilege Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-35250",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-35250"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-06-11T17:16:02.650",
+      "last_modified": "2025-10-28T14:23:42.237",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-35250 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (54.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 27,
+      "cve_id": "CVE-2025-33053",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "8.8",
+      "cvss_raw": 8.8,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.5028",
+      "epss_raw": 0.50282,
+      "epss_pct": 97.9,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-06-10",
+      "kev_desc": "Microsoft Windows contains an external control of file name or path vulnerability that could allow an attacker to execute code from a remote WebDAV location specified by the WorkingDirectory attribute of Internet Shortcut files.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.616,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-73",
+          "name": "CWE-73"
+        }
+      ],
+      "description": "External control of file name or path in Internet Shortcut Files allows an unauthorized attacker to execute code over a network.",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-33053",
+        "https://research.checkpoint.com/2025/stealth-falcon-zero-day/",
+        "https://therecord.media/microsoft-cisa-zero-day-turkish-defense-org",
+        "https://www.bleepingcomputer.com/news/security/stealth-falcon-hackers-exploited-windows-webdav-zero-day-to-drop-malware/",
+        "https://www.darkreading.com/vulnerabilities-threats/stealth-falcon-apt-exploits-microsoft-rce-zero-day-mideast",
+        "https://www.theregister.com/2025/06/10/microsoft_patch_tuesday_june/"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-06-10T17:22:18.853",
+      "last_modified": "2025-10-27T17:12:46.430",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2025-33053 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a high probability (50.3 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 28,
+      "cve_id": "CVE-2025-22224",
+      "asset": "VMware vSphere",
+      "asset_raw": "VMware vSphere",
+      "status": "Confirmed",
+      "cvss": "9.3",
+      "cvss_raw": 9.3,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.4739",
+      "epss_raw": 0.47395,
+      "epss_pct": 97.7,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-03-04",
+      "kev_desc": "VMware ESXi and Workstation contain a time-of-check time-of-use (TOCTOU) race condition vulnerability that leads to an out-of-bounds write. Successful exploitation enables an attacker with local administrative privileges on a virtual machine to execute code as the virtual machine's VMX process running on the host.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.6108,
+      "cpe": [
+        "vmware:esxi",
+        "vmware:cloud_foundation"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-367",
+          "name": "CWE-367"
+        }
+      ],
+      "description": "VMware ESXi, and Workstation\u00a0contain a TOCTOU (Time-of-Check Time-of-Use) vulnerability that leads to an out-of-bounds write.\u00a0A malicious actor with local administrative privileges on a virtual machine may exploit this issue to execute code as the virtual machine's VMX process running on the host.",
+      "references": [
+        "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/25390",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-22224"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-03-04T12:15:33.687",
+      "last_modified": "2025-10-30T19:52:49.873",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2025-22224 affects VMware vSphere and carries a critical severity rating (CVSS 9.3). EPSS puts exploitation at a moderate probability (47.4 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 29,
+      "cve_id": "CVE-2024-38213",
+      "asset": "Windows Server 2022; Windows Server 2019; Windows 11; Windows 10",
+      "asset_raw": "Windows Server 2022; Windows Server 2019; Windows 11 Pro; Windows 10 Pro",
+      "status": "Confirmed",
+      "cvss": "6.5",
+      "cvss_raw": 6.5,
+      "cvss_severity": "MEDIUM",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+      "cvss_version": "3.1",
+      "epss": "0.5932",
+      "epss_raw": 0.59323,
+      "epss_pct": 98.3,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2024-08-13",
+      "kev_desc": "Microsoft Windows SmartScreen contains a security feature bypass vulnerability that allows an attacker to bypass the SmartScreen user experience via a malicious file.",
+      "confidence": 100,
+      "confidence_band": "High",
+      "urgency": 100.6103,
+      "cpe": [
+        "microsoft:windows_server_2022",
+        "microsoft:windows_server_2019",
+        "microsoft:windows_11_23h2",
+        "microsoft:windows_10_22h2"
+      ],
+      "cwes": [
+        {
+          "id": "CWE-693",
+          "name": "CWE-693"
+        }
+      ],
+      "description": "Windows Mark of the Web Security Feature Bypass Vulnerability",
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38213",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-38213"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2024-08-13T18:15:30.750",
+      "last_modified": "2025-10-28T14:18:20.140",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2024-38213 affects Windows Server 2022; Windows Server 2019; Windows 11; Windows 10 and carries a medium severity rating (CVSS 6.5). EPSS puts exploitation at a high probability (59.3 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    },
+    {
+      "rank": 30,
+      "cve_id": "CVE-2025-2783",
+      "asset": "Google Chrome",
+      "asset_raw": "Google Chrome",
+      "status": "Confirmed",
+      "cvss": "8.3",
+      "cvss_raw": 8.3,
+      "cvss_severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H",
+      "cvss_version": "3.1",
+      "epss": "0.4686",
+      "epss_raw": 0.4686,
+      "epss_pct": 97.7,
+      "kev": true,
+      "ransomware": false,
+      "kev_date": "2025-03-27",
+      "kev_desc": "Google Chromium Mojo on Windows contains a sandbox escape vulnerability caused by a logic error, which results from an incorrect handle being provided in unspecified circumstances. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+      "confidence": 90,
+      "confidence_band": "High",
+      "urgency": 100.577,
+      "cpe": [
+        "google:chrome"
+      ],
+      "cwes": [],
+      "description": "Incorrect handle provided in unspecified circumstances in Mojo in Google Chrome on Windows prior to 134.0.6998.177 allowed a remote attacker to perform a sandbox escape via a malicious file. (Chromium security severity: High)",
+      "references": [
+        "https://chromereleases.googleblog.com/2025/03/stable-channel-update-for-desktop_25.html",
+        "https://issues.chromium.org/issues/405143032",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-2783"
+      ],
+      "vuln_status": "Analyzed",
+      "published": "2025-03-26T16:15:23.693",
+      "last_modified": "2025-10-24T14:06:49.887",
+      "action": "Patch immediately: confirmed exploited in the wild (CISA KEV).",
+      "summary": "CVE-2025-2783 affects Google Chrome and carries a high severity rating (CVSS 8.3). EPSS puts exploitation at a moderate probability (46.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild."
+    }
+  ],
+  "results_total": 2940,
+  "assets": [
+    {
+      "raw": "Windows Server 2022",
+      "version": "21H2",
+      "product": "Windows Server 2022",
+      "category": "Operating system",
+      "cpe": [
+        "microsoft:windows_server_2022*"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 1289,
+      "kev": 46
+    },
+    {
+      "raw": "Windows Server 2019",
+      "version": "1809",
+      "product": "Windows Server 2019",
+      "category": "Operating system",
+      "cpe": [
+        "microsoft:windows_server_2019"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 1263,
+      "kev": 45
+    },
+    {
+      "raw": "Windows 11 Pro",
+      "version": "23H2",
+      "product": "Windows 11",
+      "category": "Operating system",
+      "cpe": [
+        "microsoft:windows_11*"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 1197,
+      "kev": 48
+    },
+    {
+      "raw": "Windows 10 Pro",
+      "version": "22H2",
+      "product": "Windows 10",
+      "category": "Operating system",
+      "cpe": [
+        "microsoft:windows_10*"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 1146,
+      "kev": 47
+    },
+    {
+      "raw": "Microsoft Exchange Server",
+      "version": "2019",
+      "product": "Microsoft Exchange Server",
+      "category": "Mail server",
+      "cpe": [
+        "microsoft:exchange_server"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 13,
+      "kev": 1
+    },
+    {
+      "raw": "Microsoft 365 Apps for Business",
+      "version": "Current",
+      "product": "Microsoft 365 Apps",
+      "category": "Productivity",
+      "cpe": [
+        "microsoft:365_apps"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 195,
+      "kev": 2
+    },
+    {
+      "raw": "VMware vSphere",
+      "version": "8.0",
+      "product": "VMware vSphere",
+      "category": "Virtualisation",
+      "cpe": [
+        "vmware:vcenter_server",
+        "vmware:esxi",
+        "vmware:cloud_foundation"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 18,
+      "kev": 7
+    },
+    {
+      "raw": "Cisco IOS XE",
+      "version": "17.9",
+      "product": "Cisco IOS XE",
+      "category": "Network firmware",
+      "cpe": [
+        "cisco:ios_xe"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 49,
+      "kev": 1
+    },
+    {
+      "raw": "Fortinet FortiOS",
+      "version": "7.4",
+      "product": "Fortinet FortiOS",
+      "category": "Network firmware",
+      "cpe": [
+        "fortinet:fortios"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 70,
+      "kev": 3
+    },
+    {
+      "raw": "Apache HTTP Server",
+      "version": "2.4.57",
+      "product": "Apache HTTP Server",
+      "category": "Web server",
+      "cpe": [
+        "apache:http_server"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 25,
+      "kev": 1
+    },
+    {
+      "raw": "nginx",
+      "version": "1.25",
+      "product": "nginx",
+      "category": "Web server",
+      "cpe": [
+        "f5:nginx_open_source",
+        "f5:nginx_plus",
+        "nginx:nginx"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 8,
+      "kev": 0
+    },
+    {
+      "raw": "OpenSSL",
+      "version": "3.0.7",
+      "product": "OpenSSL",
+      "category": "Cryptography library",
+      "cpe": [
+        "openssl:openssl"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 8,
+      "kev": 0
+    },
+    {
+      "raw": "Apache Log4j",
+      "version": "2.17",
+      "product": "Apache Log4j",
+      "category": "Logging library",
+      "cpe": [
+        "apache:log4j"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 1,
+      "kev": 0
+    },
+    {
+      "raw": "MySQL",
+      "version": "8.0",
+      "product": "MySQL",
+      "category": "Database",
+      "cpe": [
+        "oracle:mysql",
+        "oracle:mysql_server"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 178,
+      "kev": 0
+    },
+    {
+      "raw": "PostgreSQL",
+      "version": "16",
+      "product": "PostgreSQL",
+      "category": "Database",
+      "cpe": [
+        "postgresql:postgresql"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 6,
+      "kev": 0
+    },
+    {
+      "raw": "Node.js",
+      "version": "20.11",
+      "product": "Node.js",
+      "category": "Runtime",
+      "cpe": [
+        "nodejs:node.js"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 11,
+      "kev": 0
+    },
+    {
+      "raw": "PHP",
+      "version": "8.2",
+      "product": "PHP",
+      "category": "Runtime",
+      "cpe": [
+        "php:php"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 28,
+      "kev": 1
+    },
+    {
+      "raw": "Google Chrome",
+      "version": "Latest",
+      "product": "Google Chrome",
+      "category": "Web browser",
+      "cpe": [
+        "google:chrome"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 445,
+      "kev": 14
+    },
+    {
+      "raw": "Microsoft Edge",
+      "version": "124",
+      "product": "Microsoft Edge",
+      "category": "Web browser",
+      "cpe": [
+        "microsoft:edge",
+        "microsoft:edge_chromium"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 72,
+      "kev": 4
+    },
+    {
+      "raw": "Mozilla Firefox",
+      "version": "124",
+      "product": "Mozilla Firefox",
+      "category": "Web browser",
+      "cpe": [
+        "mozilla:firefox",
+        "mozilla:firefox_esr"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 327,
+      "kev": 1
+    },
+    {
+      "raw": "Adobe Acrobat Reader DC",
+      "version": "2024.001",
+      "product": "Adobe Acrobat Reader DC",
+      "category": "Document reader",
+      "cpe": [
+        "adobe:acrobat_reader_dc",
+        "adobe:acrobat_reader",
+        "adobe:acrobat_dc",
+        "adobe:acrobat"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 2,
+      "kev": 0
+    },
+    {
+      "raw": "Zoom",
+      "version": "5.17",
+      "product": "Zoom",
+      "category": "Video conferencing",
+      "cpe": [
+        "zoom:workplace",
+        "zoom:workplace_desktop",
+        "zoom:rooms",
+        "zoom:meetings"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 78,
+      "kev": 0
+    },
+    {
+      "raw": "7-Zip",
+      "version": "23.01",
+      "product": "7-Zip",
+      "category": "Utility",
+      "cpe": [
+        "7-zip:7-zip"
+      ],
+      "score": 100.0,
+      "recognised": true,
+      "cves": 5,
+      "kev": 1
+    }
+  ],
+  "unrecognised": []
+}

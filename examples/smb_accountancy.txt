@@ -1,0 +1,10 @@
+# Acme Accountancy LLP. IT asset inventory (Use Case 1: solo sysadmin).
+# A 40 person firm. One IT person who needs the short list, not the firehose.
+# Format: Product | Version
+Windows Server 2022 | 21H2
+Microsoft 365 Apps for Business | Current
+Windows 10 Pro | 22H2
+Adobe Acrobat Reader DC | 2024.001
+Cisco IOS XE | 17.9
+Google Chrome | Latest
+Sage Payroll | 22

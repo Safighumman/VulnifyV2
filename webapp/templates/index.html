@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lodestar · CVE to Stack Intelligence</title>
+<meta name="description" content="Lodestar turns your software asset list into a prioritised, plain-English CVE action list ranked by real-world exploitability.">
+<link rel="icon" href="{{ url_for('static', filename='logo.svg') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<div class="app">
+  <!-- Brand -->
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#8b5cff"/></linearGradient></defs>
+      <circle cx="24" cy="24" r="20" fill="none" stroke="url(#lg)" stroke-width="1.4" opacity=".45"/>
+      <circle cx="40" cy="14" r="1.6" fill="#8b5cff"/>
+      <path d="M24 3 L27.2 20.8 L45 24 L27.2 27.2 L24 45 L20.8 27.2 L3 24 L20.8 20.8 Z" fill="url(#lg)"/>
+      <circle cx="24" cy="24" r="3.1" fill="#0a1020"/>
+    </svg>
+    <div>
+      <div class="name"><span>Lodestar</span></div>
+    </div>
+    <div class="ver">v2.0</div>
+  </div>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input id="search" type="search" placeholder="Search CVEs, assets, weaknesses...">
+    </div>
+    <div class="spacer"></div>
+    <div class="controls">
+      <label>Min EPSS <input id="minEpss" type="number" min="0" max="1" step="0.05" value="0"></label>
+      <span class="toggle" id="kevToggle"><span class="box"></span><span>Exploited only</span></span>
+      <button class="btn" id="run">Run analysis</button>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="side">
+    <div class="label">Platform</div>
+    <div class="nav-item active" data-view="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg>
+      Overview</div>
+    <div class="nav-item" data-view="vulnerabilities">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>
+      Vulnerabilities <span class="count" id="nav-vuln-count">0</span></div>
+    <div class="nav-item" data-view="imports">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      Imports &amp; feeds <span class="count" id="nav-import-count">0</span></div>
+    <div class="nav-item" data-view="assets">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg>
+      Assets <span class="count" id="nav-asset-count">0</span></div>
+    <div class="sep"></div>
+    <div class="label">Knowledge</div>
+    <div class="nav-item" data-view="catalog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>
+      Normalisation catalogue</div>
+    <div class="foot">
+      <div id="statusline"><span class="dot"></span>loading...</div>
+      <div style="margin-top:8px">Offline intelligence. No live APIs.<br>Sources: NVD, CISA KEV, EPSS.</div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Overview -->
+    <section class="view active" id="view-overview">
+      <div class="view-head">
+        <div><h1>Threat overview</h1><p>Prioritised exposure across your stack, ranked by real-world exploitability.</p></div>
+      </div>
+      <div id="ov-warn"></div>
+      <div class="kpis" id="kpis"></div>
+      <div id="ov-charts"></div>
+    </section>
+
+    <!-- Vulnerabilities -->
+    <section class="view" id="view-vulnerabilities">
+      <div class="view-head">
+        <div><h1>Vulnerabilities</h1><p id="vuln-count">0 shown</p></div>
+      </div>
+      <div class="toolbar" id="vuln-filters">
+        <span class="chip active" data-f="all">All</span>
+        <span class="chip" data-f="kev">Confirmed exploited</span>
+        <span class="chip" data-f="ransomware">Ransomware</span>
+        <span class="chip" data-f="critical">Critical</span>
+        <span class="chip" data-f="high">High and above</span>
+        <span class="chip" data-f="epss">EPSS &ge; 0.5</span>
+        <div class="spacer" style="flex:1"></div>
+        <button class="btn ghost" id="dlBtn">Export CSV</button>
+      </div>
+      <div class="tablecard"><div class="tscroll">
+        <table><thead id="vuln-thead"></thead><tbody id="vuln-tbody"></tbody></table>
+      </div></div>
+    </section>
+
+    <!-- Imports -->
+    <section class="view" id="view-imports">
+      <div class="view-head">
+        <div><h1>Imports &amp; feeds</h1><p>Offline ingestion of the intelligence sources that power Lodestar.</p></div>
+      </div>
+      <div class="kpis" id="import-summary"></div>
+      <div class="jobs" id="import-jobs"></div>
+    </section>
+
+    <!-- Assets -->
+    <section class="view" id="view-assets">
+      <div class="view-head">
+        <div><h1>Assets</h1><p>Your software inventory, normalised to canonical CPE identifiers.</p></div>
+      </div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="panel-head"><h3>Analysis input</h3>
+          <div style="display:flex;gap:8px">
+            <button class="btn ghost" id="fileBtn">Upload file</button>
+            <input id="file" type="file" accept=".txt,.csv" style="display:none">
+            <button class="btn" onclick="analyze()">Run analysis</button>
+          </div>
+        </div>
+        <textarea id="assets" spellcheck="false" style="width:100%;min-height:150px;background:var(--bg-1);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;font:13px ui-monospace,Menlo,monospace;resize:vertical">{{ sample_assets }}</textarea>
+        <div class="sub" style="margin-top:8px">One product per line. Optional <code>Name | Version</code> or <code>Name, Version</code>. <span id="fileName"></span></div>
+      </div>
+      <div class="cards" id="assets-grid"></div>
+    </section>
+
+    <!-- Catalogue -->
+    <section class="view" id="view-catalog">
+      <div class="view-head">
+        <div><h1>Normalisation catalogue</h1><p>The verified product to CPE knowledge base. Every target was checked against the real NVD feeds.</p></div>
+      </div>
+      <div class="cards" id="catalog-grid"></div>
+    </section>
+  </main>
+</div>
+
+<!-- Detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead"><div id="drawer-title"></div><button class="x" id="drawerClose">&times;</button></div>
+  <div class="dbody" id="drawer-body"></div>
+</aside>
+
+<script src="{{ url_for('static', filename='charts.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

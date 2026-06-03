@@ -1,0 +1,15 @@
+# Sample asset list (Section 10 of the project brief).
+# Format: Product Name | Version
+# Lines starting with '#' and blank lines are ignored.
+Microsoft 365 Apps for Business | Current
+Windows Server 2022 | 21H2
+Windows 10 Pro | 22H2
+Adobe Acrobat Reader DC | 2024.001
+Cisco IOS XE | 17.9
+VMware vSphere | 8.0
+Google Chrome | Latest
+OpenSSL | 3.0.7
+Apache HTTP Server | 2.4.57
+Zoom | 5.17
+WordPress | 6.4
+Moodle | 4.3

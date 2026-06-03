@@ -1,0 +1,13 @@
+# Core data pipeline (Approach A in the project brief)
+pandas>=2.0          # load, filter, and sort the EPSS CSV and CVE data
+rapidfuzz>=3.0       # fuzzy string matching for product-name normalisation
+tabulate>=0.9        # readable console tables during the demo
+
+# Optional web front end (Approach B element / stretch goal)
+flask>=3.0           # minimal browser dashboard over the same pipeline
+
+# Standard library used elsewhere (no install needed):
+#   json, gzip, lzma, csv, argparse, re, dataclasses, pathlib
+
+# Development only
+pytest>=7.0

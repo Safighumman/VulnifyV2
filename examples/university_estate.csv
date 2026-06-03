@@ -1,0 +1,11 @@
+Product,Version,Owner
+Windows Server 2019,,Core infrastructure
+Windows 11 Pro,23H2,Student labs
+Moodle,4.3,Learning platform
+Apache HTTP Server,2.4.57,Web services
+MySQL,8.0,Database team
+OpenSSL,3.0.7,Core infrastructure
+PHP,8.2,Web services
+Mozilla Firefox,,Student labs
+nginx,1.25,Web services
+PostgreSQL,16,Research computing

@@ -1,0 +1,128 @@
+========================================================================
+CVE-TO-MY-STACK TRANSLATOR : PATCH PRIORITISATION BRIEF
+Generated 2026-06-03 10:23 UTC
+========================================================================
+
+SUMMARY
+  Assets supplied      : 7
+  Assets recognised    : 6
+  Relevant CVEs found  : 25
+  Actively exploited   : 25 (in CISA KEV)
+  Ransomware-linked    : 8
+
+TOP 25 ACTIONS (highest urgency first)
+
+ 1. CVE-2024-21412  [Yes (ransomware)]  CVSS 8.1  EPSS 0.9378
+    CVE-2024-21412 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.1). EPSS puts exploitation at a high probability (93.8 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 2. CVE-2024-30088  [Yes (ransomware)]  CVSS 7.0  EPSS 0.8808
+    CVE-2024-30088 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.0). EPSS puts exploitation at a high probability (88.1 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 3. CVE-2024-21338  [Yes (ransomware)]  CVSS 7.8  EPSS 0.7957
+    CVE-2024-21338 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (79.6 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 4. CVE-2024-49039  [Yes (ransomware)]  CVSS 8.8  EPSS 0.6367
+    CVE-2024-49039 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a high probability (63.7 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 5. CVE-2024-30051  [Yes (ransomware)]  CVSS 7.8  EPSS 0.5093
+    CVE-2024-30051 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (50.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 6. CVE-2025-26633  [Yes (ransomware)]  CVSS 7.0  EPSS 0.4398
+    CVE-2025-26633 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.0). EPSS puts exploitation at a moderate probability (44.0 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 7. CVE-2024-26169  [Yes (ransomware)]  CVSS 7.8  EPSS 0.3515
+    CVE-2024-26169 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a moderate probability (35.1 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 8. CVE-2025-29824  [Yes (ransomware)]  CVSS 7.8  EPSS 0.0092
+    CVE-2025-29824 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a low probability (0.9 percent in the next 30 days, higher than 76 percent of all CVEs), and CISA confirms active exploitation in ransomware campaigns.
+    Action: Patch immediately: actively exploited in ransomware campaigns.
+
+ 9. CVE-2024-21413  [Yes]  CVSS 9.8  EPSS 0.9299
+    CVE-2024-21413 affects Microsoft 365 Apps and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (93.0 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+10. CVE-2024-38112  [Yes]  CVSS 7.5  EPSS 0.9296
+    CVE-2024-38112 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.5). EPSS puts exploitation at a high probability (93.0 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+11. CVE-2024-49138  [Yes]  CVSS 7.8  EPSS 0.8695
+    CVE-2024-49138 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (86.9 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+12. CVE-2024-43451  [Yes]  CVSS 6.5  EPSS 0.9031
+    CVE-2024-43451 affects Windows Server 2022; Windows 10 and carries a medium severity rating (CVSS 6.5). EPSS puts exploitation at a high probability (90.3 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+13. CVE-2025-59287  [Yes]  CVSS 9.8  EPSS 0.7270
+    CVE-2025-59287 affects Windows Server 2022 and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a high probability (72.7 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+14. CVE-2025-21333  [Yes]  CVSS 7.8  EPSS 0.7969
+    CVE-2025-21333 affects Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (79.7 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+15. CVE-2024-38193  [Yes]  CVSS 7.8  EPSS 0.7323
+    CVE-2024-38193 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (73.2 percent in the next 30 days, higher than 99 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+16. CVE-2024-29988  [Yes]  CVSS 8.8  EPSS 0.6050
+    CVE-2024-29988 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a high probability (60.5 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+17. CVE-2024-35250  [Yes]  CVSS 7.8  EPSS 0.5491
+    CVE-2024-35250 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a high probability (54.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+18. CVE-2025-33053  [Yes]  CVSS 8.8  EPSS 0.5028
+    CVE-2025-33053 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a high probability (50.3 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+19. CVE-2024-38213  [Yes]  CVSS 6.5  EPSS 0.5932
+    CVE-2024-38213 affects Windows Server 2022; Windows 10 and carries a medium severity rating (CVSS 6.5). EPSS puts exploitation at a high probability (59.3 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+20. CVE-2025-2783  [Yes]  CVSS 8.3  EPSS 0.4686
+    CVE-2025-2783 affects Google Chrome and carries a high severity rating (CVSS 8.3). EPSS puts exploitation at a moderate probability (46.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+21. CVE-2024-43572  [Yes]  CVSS 7.8  EPSS 0.4894
+    CVE-2024-43572 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a moderate probability (48.9 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+22. CVE-2024-38189  [Yes]  CVSS 8.8  EPSS 0.4366
+    CVE-2024-38189 affects Microsoft 365 Apps and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a moderate probability (43.7 percent in the next 30 days, higher than 98 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+23. CVE-2025-33073  [Yes]  CVSS 8.8  EPSS 0.3716
+    CVE-2025-33073 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a moderate probability (37.2 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+24. CVE-2024-30040  [Yes]  CVSS 8.8  EPSS 0.2866
+    CVE-2024-30040 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a moderate probability (28.7 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+25. CVE-2024-38178  [Yes]  CVSS 7.5  EPSS 0.3023
+    CVE-2024-38178 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.5). EPSS puts exploitation at a moderate probability (30.2 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+UNRECOGNISED ASSETS (no confident CPE mapping)
+
+  These were not matched and may hide real vulnerabilities.
+  Review the spelling or extend the normalisation catalogue:
+    * Sage Payroll
+
+METHOD AND CAVEATS
+
+  Urgency blends CISA KEV (actively exploited), EPSS
+  (probability of exploitation in the next 30 days), and CVSS
+  (technical severity). KEV entries are always surfaced first.
+  A low score is not a guarantee of safety: EPSS is predictive,
+  and a CVE absent from KEV may simply be unconfirmed.
+========================================================================
