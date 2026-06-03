@@ -1,20 +1,21 @@
-"""Live ingestion engine: constant, background import of the brief's feeds.
+"""Offline ingestion engine for the pre-downloaded feeds named in the brief.
 
-This is what turns the platform from a static page into a live one. A daemon
-thread polls the enabled connectors on their own cadences, fetching fresh data
-from the sources named in the project brief (reached through their maintained
-GitHub mirrors so they work behind strict outbound allow-lists). Each cycle:
+The project brief is strict: no external vulnerability-data APIs may be called
+at run time. All data must come from the pre-downloaded local files. This engine
+honours that. A daemon thread watches the local feed files (``data/feeds/`` when
+a facilitator has staged them, otherwise the bundled real subset) and, whenever a
+file changes, re-ingests it:
 
-  * downloads the source into ``data/feeds/`` (atomically),
   * diffs it against the previous snapshot,
-  * emits live events for what changed (new CISA KEV entries are *confirmed*
-    exploitation; rising EPSS scores and freshly published CVEs are
-    *unconfirmed* signals), and
+  * emits events for what changed (new CISA KEV entries are *confirmed*
+    exploitation; rising EPSS scores and newly seen CVEs are *unconfirmed*
+    signals), and
   * hot-swaps the pipeline's cached corpus so analysis reflects the new data.
 
-If the network is unavailable the feed degrades to an ``offline`` status and the
-platform keeps serving the bundled real subset, then upgrades itself the moment
-connectivity returns. Subscribers (the dashboard's SSE stream) receive every
+Only the brief's feeds are used: NVD CVE (Fraunhofer FKIE reconstruction), the
+CISA KEV catalogue, and EPSS. No network is ever touched here; the one-off
+download of those files is the facilitator's pre-event step in
+``scripts/fetch_data.py``. Subscribers (the dashboard's SSE stream) receive every
 event and feed-status change in real time.
 """
 
@@ -22,13 +23,11 @@ from __future__ import annotations
 
 import json
 import queue
-import shutil
 import threading
 import time
-import urllib.request
 from collections import deque
 from dataclasses import dataclass, field
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -99,6 +98,7 @@ class LiveEngine:
         self._thread: Optional[threading.Thread] = None
         self._stop = threading.Event()
         self._last_sync = ""
+        self._sig: Dict[str, str] = {}        # local-file signatures per feed
 
     # Lifecycle
     def start(self) -> None:
@@ -120,16 +120,22 @@ class LiveEngine:
             self._prev_cve_ids = {r.cve_id for r in data.records}
             self._prev_epss = {k: v["epss"] for k, v in data.epss_map.items()}
             for c in connectors.list_connectors():
+                enabled = c.get("enabled", True)
+                loaded = enabled and c["id"] in data.counts
                 self._feeds[c["id"]] = FeedHealth(
                     key=c["id"], name=c["name"], provider=c.get("provider", ""),
                     category=c.get("category", ""), fmt=c.get("format", ""),
-                    enabled=c.get("enabled", True),
-                    status="idle" if c.get("enabled", True) else "disabled",
+                    enabled=enabled,
+                    status="loaded" if loaded else ("disabled" if not enabled else "idle"),
                     records=data.counts.get(c["id"], 0),
-                    source="bundled",
-                    message=("Bundled snapshot loaded; awaiting live sync"
-                             if c.get("enabled", True) else "Disabled"),
+                    source="local",
+                    last_run=_now_iso() if loaded else "",
+                    message=("Loaded from pre-downloaded feed files" if enabled
+                             else "Disabled"),
                 )
+            self._online = any(v > 0 for v in data.counts.values())
+            for key in ("kev", "epss", "nvd"):
+                self._sig[key] = self._signature(key)
         self._seed_events(data)
 
     def _seed_events(self, data) -> None:
@@ -243,6 +249,7 @@ class LiveEngine:
         return {
             "live_enabled": self._live_enabled,
             "online": self._online,
+            "mode": "offline",
             "data_version": self._data_version,
             "last_sync": self._last_sync,
             "server_time": _now_iso(),
@@ -274,9 +281,9 @@ class LiveEngine:
         self._broadcast_state()
 
     def trigger(self, feed_key: Optional[str] = None) -> None:
-        """Force an immediate sync of one feed (or all enabled) in the background."""
+        """Re-read one feed (or all enabled) from local files now, in the background."""
         keys = [feed_key] if feed_key else [c["id"] for c in connectors.enabled_connectors()]
-        threading.Thread(target=lambda: [self._sync_feed(k) for k in keys],
+        threading.Thread(target=lambda: [self._sync_feed(k, force=True) for k in keys],
                          daemon=True).start()
 
     # The background loop
@@ -303,26 +310,42 @@ class LiveEngine:
             self._broadcast_state()
             self._stop.wait(5)
 
-    def _sync_feed(self, key: str) -> None:
+    def _sync_feed(self, key: str, force: bool = False) -> None:
+        """Ingest one feed strictly from the local pre-downloaded files.
+
+        No network is touched: data is read from ``data/feeds/`` when present,
+        else from the bundled real subset. A feed is only re-read when its local
+        file has changed since the last ingest (or when forced), so a facilitator
+        dropping updated files mid-session is picked up without needless reloads.
+        """
         conn = connectors.get_connector(key)
         if conn is None or not conn.get("enabled", True):
             return
-        handler = {"kev": self._sync_kev, "epss": self._sync_epss,
-                   "nvd": self._sync_nvd}.get(conn.get("kind", key))
+        handler = {"kev": self._ingest_kev, "epss": self._ingest_epss,
+                   "nvd": self._ingest_nvd}.get(conn.get("kind", key))
         if handler is None:
-            self._sync_custom(conn)
+            self._ingest_custom(conn)
             return
-        self._set_status(key, "syncing", message="Fetching from live source")
+
+        sig = self._signature(key)
+        if not force and sig and self._sig.get(key) == sig:
+            return                     # local files unchanged, nothing to ingest
+
+        self._set_status(key, "scanning", message="Reading local feed files")
         t0 = time.perf_counter()
         try:
             handler(conn)
-            self._online = True
+        except FileNotFoundError:
+            self._set_status(key, "error", source="none",
+                             message="No local feed file (run the facilitator pre-event prep)")
+            return
         except Exception as exc:  # noqa: BLE001 - degrade, never crash
-            self._set_status(key, "offline", source="bundled",
-                             message=f"Offline, serving bundled data ({type(exc).__name__})")
+            self._set_status(key, "error", message=f"Ingest failed: {type(exc).__name__}")
             return
         dur = time.perf_counter() - t0
         with self._lock:
+            self._sig[key] = sig
+            self._online = True
             fh = self._feeds.get(key)
             if fh:
                 fh.duration_s = dur
@@ -330,29 +353,35 @@ class LiveEngine:
                 fh.speed = int(fh.records / dur) if dur > 0 else fh.records
             self._last_sync = _now_iso()
 
-    @staticmethod
-    def _file_fresh(path: Path, max_age_s: float) -> bool:
-        if not path.exists():
-            return False
-        return (time.time() - path.stat().st_mtime) < max(60.0, float(max_age_s))
+    # Local file resolution (feeds-first, bundled-fallback, mirroring data_loader)
+    def _feed_paths(self, key: str) -> List[Path]:
+        try:
+            if key == "kev":
+                p = config.FEEDS_DIR / "known_exploited_vulnerabilities.json"
+                if p.exists():
+                    return [p]
+                return [config.BUNDLED_KEV] if config.BUNDLED_KEV.exists() else []
+            if key == "epss":
+                p = data_loader._resolve_epss_path()
+                return [p] if p else []
+            if key == "nvd":
+                return data_loader._resolve_nvd_paths()
+        except Exception:  # noqa: BLE001
+            return []
+        return []
 
-    # Per-source sync handlers
-    def _download(self, url: str, dest: Path, auth_header: str = "") -> None:
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        tmp = dest.with_suffix(dest.suffix + ".part")
-        headers = {"User-Agent": "vulnify/3.0 (+live-ingest)"}
-        if auth_header and ":" in auth_header:
-            name, _, value = auth_header.partition(":")
-            headers[name.strip()] = value.strip()
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=config.LIVE_HTTP_TIMEOUT) as resp, \
-                open(tmp, "wb") as fh:
-            shutil.copyfileobj(resp, fh)
-        tmp.replace(dest)
+    def _signature(self, key: str) -> str:
+        """A change-signature of a feed's local files (path + mtime)."""
+        parts = []
+        for p in self._feed_paths(key):
+            try:
+                parts.append(f"{p}:{p.stat().st_mtime_ns}")
+            except OSError:
+                pass
+        return "|".join(parts)
 
-    def _sync_kev(self, conn: dict) -> None:
-        dest = config.FEEDS_DIR / "known_exploited_vulnerabilities.json"
-        self._download(conn["url"], dest, conn.get("auth_header", ""))
+    # Per-source offline ingest handlers (read local files only)
+    def _ingest_kev(self, conn: dict) -> None:
         kev_ids, kev_detail = data_loader.load_kev_set()
         with self._lock:
             new_ids = kev_ids - self._prev_kev_ids
@@ -360,7 +389,6 @@ class LiveEngine:
         self._update_cache(kev_ids=kev_ids, kev_detail=kev_detail)
         data = pipeline.current_data()
         recs = {r.cve_id: r for r in data.records} if data else {}
-        # Emit newest first; cap the burst so the stream stays readable.
         for cid in sorted(new_ids,
                           key=lambda c: kev_detail.get(c, {}).get("dateAdded", ""),
                           reverse=True)[:30]:
@@ -374,27 +402,12 @@ class LiveEngine:
                 vendor=det.get("vendorProject", ""), product=det.get("product", ""),
                 ransomware=det.get("ransomware", False), source="kev",
                 ts=_now_iso()))
-        self._set_status("kev", "live", source="live", new=len(new_ids),
+        self._set_status("kev", "loaded", source="local", new=len(new_ids),
                          records=len(kev_ids),
-                         message=(f"{len(new_ids)} new confirmed-exploited CVE(s)"
-                                  if new_ids else "Up to date, no new entries"))
+                         message=(f"{len(new_ids)} new confirmed-exploited CVE(s) in local file"
+                                  if new_ids else "Loaded from local feed file"))
 
-    def _sync_epss(self, conn: dict) -> None:
-        dest = None
-        last_err: Optional[Exception] = None
-        # Today's file may not be posted yet; walk back a few days.
-        for back in range(0, 4):
-            day = (date.today() - timedelta(days=back)).isoformat()
-            url = conn["url"].format(year=day[:4], date=day)
-            target = config.FEEDS_DIR / f"epss_scores-{day}.csv.gz"
-            try:
-                self._download(url, target, conn.get("auth_header", ""))
-                dest = target
-                break
-            except Exception as exc:  # noqa: BLE001
-                last_err = exc
-        if dest is None:
-            raise last_err or RuntimeError("No EPSS file available")
+    def _ingest_epss(self, conn: dict) -> None:
         epss_map = data_loader.load_epss_map()
         risers: List[tuple] = []
         with self._lock:
@@ -419,28 +432,12 @@ class LiveEngine:
                 severity=(rec.cvss_severity if rec else ""), epss=cur,
                 vendor=(rec.cpe_matches[0].vendor if rec and rec.cpe_matches else ""),
                 product="", source="epss", ts=_now_iso()))
-        self._set_status("epss", "live", source="live", new=len(risers),
+        self._set_status("epss", "loaded", source="local", new=len(risers),
                          records=len(epss_map),
                          message=(f"{len(risers)} CVE(s) with rising exploitation odds"
-                                  if risers else "Up to date"))
+                                  if risers else "Loaded from local feed file"))
 
-    def _sync_nvd(self, conn: dict) -> None:
-        years = config.env_year_list()
-        # The full NVD corpus is hundreds of MB. Skip the download when the
-        # per-year files already exist and are newer than the sync interval, so
-        # restarts reuse the cached feeds instead of re-pulling every time.
-        fresh = all(self._file_fresh(config.FEEDS_DIR / f"CVE-{year}.json",
-                                     conn.get("interval", config.LIVE_INTERVAL_NVD))
-                    for year in years)
-        if not fresh:
-            for year in years:
-                xz = config.FEEDS_DIR / f"CVE-{year}.json.xz"
-                self._download(conn["url"].format(year=year), xz)
-                import lzma
-                out = config.FEEDS_DIR / f"CVE-{year}.json"
-                with lzma.open(xz, "rb") as src, open(out, "wb") as dst:
-                    shutil.copyfileobj(src, dst)
-                xz.unlink(missing_ok=True)
+    def _ingest_nvd(self, conn: dict) -> None:
         records = data_loader.load_cve_records()
         with self._lock:
             cur_ids = {r.cve_id for r in records}
@@ -460,28 +457,22 @@ class LiveEngine:
                 epss=(data.epss_map.get(rec.cve_id, {}) or {}).get("epss") if data else None,
                 vendor=(rec.cpe_matches[0].vendor if rec.cpe_matches else ""),
                 product="", source="nvd", ts=_now_iso()))
-        self._set_status("nvd", "live", source="live", new=len(new_ids),
+        self._set_status("nvd", "loaded", source="local", new=len(new_ids),
                          records=len(records),
-                         message=(f"{len(new_ids)} newly published CVE(s)"
-                                  if new_ids else "Corpus current"))
+                         message=(f"{len(new_ids)} newly seen CVE(s) in local corpus"
+                                  if new_ids else "Loaded from local feed file(s)"))
 
-    def _sync_custom(self, conn: dict) -> None:
-        """Best-effort fetch of a user connector: validate it returns data."""
+    def _ingest_custom(self, conn: dict) -> None:
+        """Custom connectors are offline: read a local file path, never the network."""
         key = conn["id"]
-        self._set_status(key, "syncing", message="Fetching custom source")
-        try:
-            dest = config.FEEDS_DIR / f"custom_{key}.dat"
-            self._download(conn["url"], dest, conn.get("auth_header", ""))
-            size = dest.stat().st_size
-            self._set_status(key, "live", source="live", records=size,
-                             message=f"Reachable, {size:,} bytes fetched")
-            self._emit(self._make_event(
-                etype="connector", cve_id=conn["name"], status="Unconfirmed",
-                title=f"Custom connector '{conn['name']}' returned {size:,} bytes",
-                severity="", epss=None, vendor=conn.get("provider", ""),
-                product="", source="custom", ts=_now_iso()))
-        except Exception as exc:  # noqa: BLE001
-            self._set_status(key, "error", message=f"Unreachable: {type(exc).__name__}")
+        path = Path(conn.get("url", ""))
+        if path.is_file():
+            size = path.stat().st_size
+            self._set_status(key, "loaded", source="local", records=size,
+                             message=f"Local file read, {size:,} bytes")
+        else:
+            self._set_status(key, "idle", source="local",
+                             message="Configured (offline). Point it at a local file path to ingest.")
 
     # Cache hot-swap
     def _update_cache(self, **parts) -> None:
@@ -519,7 +510,7 @@ class LiveEngine:
                 fh.new_since_last = new
             if message:
                 fh.message = message
-            if status in ("live", "offline", "error"):
+            if status in ("loaded", "offline", "error"):
                 fh.last_run = _now_iso()
         self._broadcast_state()
 

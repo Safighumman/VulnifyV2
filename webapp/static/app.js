@@ -396,7 +396,7 @@ function renderImports() {
     <div class="kpi info"><div class="glow"></div><div class="k-label">Match + rank</div>
       <div class="k-val" data-count="${(((t.match_s || 0) + (t.rank_s || 0)) * 1000).toFixed(0)}">0</div><div class="k-sub">milliseconds</div><div class="k-icon">${icon('bolt', 22)}</div></div>
     <div class="kpi ${State.live && State.live.online ? 'good' : 'warn'}"><div class="glow"></div><div class="k-label">Ingestion</div>
-      <div class="k-val" style="font-size:22px">${State.live && State.live.online ? 'LIVE' : 'OFFLINE'}</div><div class="k-sub">${State.live && State.live.online ? 'streaming from sources' : 'serving bundled snapshot'}</div><div class="k-icon">${icon('pulse', 22)}</div></div>`;
+      <div class="k-val" style="font-size:22px">${State.live && State.live.online ? 'LOCAL' : 'NO FEEDS'}</div><div class="k-sub">${State.live && State.live.online ? 'reading pre-downloaded feeds' : 'stage files in data/feeds'}</div><div class="k-icon">${icon('pulse', 22)}</div></div>`;
 
   const icons = { nvd: 'db', kev: 'target', epss: 'trend' };
   const feeds = live.length ? live : jobs.map(j => ({ key: j.key, name: j.source, provider: j.provider, status: j.status, records: j.records, source: 'bundled', message: '', category: j.category, format: j.format }));
@@ -406,7 +406,7 @@ function renderImports() {
     return `<div class="job"><div class="top">
         <div class="ico">${icon(icons[f.key] || 'plug', 22)}</div>
         <div><div class="tt">${esc(f.name)}</div><div class="pv">${esc(f.provider || '')}</div></div>
-        <div class="fstat s-${f.status} st" style="margin-left:auto">${f.status === 'live' ? '<span class="sdot"></span>live' : `<span class="sdot"></span>${esc(f.status)}`}</div>
+        <div class="fstat s-${f.status} st" style="margin-left:auto"><span class="sdot"></span>${esc(f.status)}</div>
       </div>
       <div class="meta">
         <div class="m"><div class="ml">Records</div><div class="mv">${fmt(f.records)}</div></div>
@@ -443,7 +443,7 @@ function maybeDataUpdated() {
 }
 function renderLiveState() {
   if (!State.live) return;
-  setLivePill(State.live.online, State.live.online ? 'Live' : 'Offline', State.live.last_sync);
+  setLivePill(State.live.online, State.live.online ? 'Local feeds' : 'No feeds', State.live.last_sync);
   const confirmed = (State.live.events || []).filter(e => e.status === 'Confirmed').length;
   $('#nav-live-count').textContent = fmt(confirmed);
   renderFeedStrip();
@@ -453,7 +453,7 @@ function renderLiveState() {
 function setLivePill(online, text, sync) {
   const p = $('#livepill');
   p.classList.toggle('online', !!online); p.classList.toggle('offline', !online);
-  $('#lp-text').textContent = text || (online ? 'Live' : 'Offline');
+  $('#lp-text').textContent = text || (online ? 'Local feeds' : 'No feeds');
   $('#lp-sync').textContent = sync ? '· ' + timeAgo(sync) : '';
 }
 function renderFeedStrip() {
@@ -463,7 +463,7 @@ function renderFeedStrip() {
     <div class="fcard"><div class="ftop">
         <div class="fico">${icon(icons[f.key] || 'plug', 18)}</div>
         <div><div class="fn">${esc(f.name)}</div><div class="fp">${esc(f.provider || '')}</div></div>
-        <div class="fstat s-${f.status}"><span class="sdot"></span>${f.status === 'live' ? 'live' : esc(f.status)}<span class="srctag">${esc(f.source)}</span></div>
+        <div class="fstat s-${f.status}"><span class="sdot"></span>${esc(f.status)}<span class="srctag">${esc(f.source)}</span></div>
       </div>
       <div class="fmeta">
         <div><div class="fv">${fmt(f.records)}</div><div class="fl">Records</div></div>
@@ -691,7 +691,7 @@ async function saveConnector() {
   const body = {
     name: $('#cf-name').value, provider: $('#cf-provider').value, url: $('#cf-url').value,
     format: $('#cf-format').value, category: $('#cf-category').value,
-    interval: parseInt($('#cf-interval').value) || 900, auth_header: $('#cf-auth').value,
+    interval: parseInt($('#cf-interval').value) || 900,
   };
   if (!body.name || !body.url) { toast('Name and URL are required', 'err'); return; }
   const res = await fetch('/api/connectors', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
