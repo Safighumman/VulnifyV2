@@ -1,16 +1,16 @@
 ========================================================================
 CVE-TO-MY-STACK TRANSLATOR : PATCH PRIORITISATION BRIEF
-Generated 2026-06-03 10:23 UTC
+Generated 2026-06-03 13:03 UTC
 ========================================================================
 
 SUMMARY
   Assets supplied      : 7
   Assets recognised    : 6
-  Relevant CVEs found  : 25
-  Actively exploited   : 25 (in CISA KEV)
+  Relevant CVEs found  : 40
+  Actively exploited   : 40 (in CISA KEV)
   Ransomware-linked    : 8
 
-TOP 25 ACTIONS (highest urgency first)
+TOP 40 ACTIONS (highest urgency first)
 
  1. CVE-2024-21412  [Yes (ransomware)]  CVSS 8.1  EPSS 0.9378
     CVE-2024-21412 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.1). EPSS puts exploitation at a high probability (93.8 percent in the next 30 days, in the top 1 percent of all CVEs by exploitation probability), and CISA confirms active exploitation in ransomware campaigns.
@@ -110,6 +110,66 @@ TOP 25 ACTIONS (highest urgency first)
 
 25. CVE-2024-38178  [Yes]  CVSS 7.5  EPSS 0.3023
     CVE-2024-38178 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.5). EPSS puts exploitation at a moderate probability (30.2 percent in the next 30 days, higher than 97 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+26. CVE-2024-7965  [Yes]  CVSS 8.8  EPSS 0.2423
+    CVE-2024-7965 affects Google Chrome and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a moderate probability (24.2 percent in the next 30 days, higher than 96 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+27. CVE-2025-30397  [Yes]  CVSS 7.5  EPSS 0.2074
+    CVE-2025-30397 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.5). EPSS puts exploitation at a moderate probability (20.7 percent in the next 30 days, higher than 96 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+28. CVE-2024-5274  [Yes]  CVSS 9.6  EPSS 0.0664
+    CVE-2024-5274 affects Google Chrome and carries a critical severity rating (CVSS 9.6). EPSS puts exploitation at a low probability (6.6 percent in the next 30 days, higher than 91 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+29. CVE-2024-38080  [Yes]  CVSS 7.8  EPSS 0.1420
+    CVE-2024-38080 affects Windows Server 2022 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a moderate probability (14.2 percent in the next 30 days, higher than 95 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+30. CVE-2024-43461  [Yes]  CVSS 8.8  EPSS 0.0990
+    CVE-2024-43461 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a low probability (9.9 percent in the next 30 days, higher than 93 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+31. CVE-2025-21418  [Yes]  CVSS 7.8  EPSS 0.1327
+    CVE-2025-21418 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a moderate probability (13.3 percent in the next 30 days, higher than 94 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+32. CVE-2024-38014  [Yes]  CVSS 7.8  EPSS 0.1283
+    CVE-2024-38014 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.8). EPSS puts exploitation at a moderate probability (12.8 percent in the next 30 days, higher than 94 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+33. CVE-2024-43573  [Yes]  CVSS 6.5  EPSS 0.1770
+    CVE-2024-43573 affects Windows Server 2022; Windows 10 and carries a medium severity rating (CVSS 6.5). EPSS puts exploitation at a moderate probability (17.7 percent in the next 30 days, higher than 95 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+34. CVE-2024-4761  [Yes]  CVSS 8.8  EPSS 0.0629
+    CVE-2024-4761 affects Google Chrome and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a low probability (6.3 percent in the next 30 days, higher than 91 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+35. CVE-2025-10585  [Yes]  CVSS 9.8  EPSS 0.0154
+    CVE-2025-10585 affects Google Chrome and carries a critical severity rating (CVSS 9.8). EPSS puts exploitation at a low probability (1.5 percent in the next 30 days, higher than 82 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+36. CVE-2024-21351  [Yes]  CVSS 7.6  EPSS 0.1067
+    CVE-2024-21351 affects Windows Server 2022; Windows 10 and carries a high severity rating (CVSS 7.6). EPSS puts exploitation at a moderate probability (10.7 percent in the next 30 days, higher than 93 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+37. CVE-2024-7971  [Yes]  CVSS 9.6  EPSS 0.0102
+    CVE-2024-7971 affects Google Chrome and carries a critical severity rating (CVSS 9.6). EPSS puts exploitation at a low probability (1.0 percent in the next 30 days, higher than 77 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+38. CVE-2024-4947  [Yes]  CVSS 9.6  EPSS 0.0097
+    CVE-2024-4947 affects Google Chrome and carries a critical severity rating (CVSS 9.6). EPSS puts exploitation at a low probability (1.0 percent in the next 30 days, higher than 77 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+39. CVE-2025-5419  [Yes]  CVSS 8.8  EPSS 0.0383
+    CVE-2025-5419 affects Google Chrome and carries a high severity rating (CVSS 8.8). EPSS puts exploitation at a low probability (3.8 percent in the next 30 days, higher than 88 percent of all CVEs), and CISA confirms it is being exploited in the wild.
+    Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
+
+40. CVE-2024-4671  [Yes]  CVSS 9.6  EPSS 0.0017
+    CVE-2024-4671 affects Google Chrome and carries a critical severity rating (CVSS 9.6). EPSS puts exploitation at a low probability (0.2 percent in the next 30 days, higher than 38 percent of all CVEs), and CISA confirms it is being exploited in the wild.
     Action: Patch immediately: confirmed exploited in the wild (CISA KEV).
 
 UNRECOGNISED ASSETS (no confident CPE mapping)

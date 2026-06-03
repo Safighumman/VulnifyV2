@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Vulnify runtime data
+# Full live feeds are fetched on demand by the live ingest engine; never commit
+# them (they are hundreds of MB). The real bundled subset in data/bundled/ is
+# tracked so the platform works offline the moment it is cloned.
+data/feeds/
+data/config/
+output/
+*.part
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -233,9 +233,13 @@ def load_kev_set() -> tuple[Set[str], Dict[str, dict]]:
             continue
         kev_ids.add(cid)
         detail[cid] = {
+            "vulnerabilityName": v.get("vulnerabilityName", ""),
             "vendorProject": v.get("vendorProject", ""),
             "product": v.get("product", ""),
             "shortDescription": v.get("shortDescription", ""),
+            "requiredAction": v.get("requiredAction", ""),
+            "dueDate": v.get("dueDate", ""),
+            "notes": v.get("notes", ""),
             "dateAdded": v.get("dateAdded", ""),
             "ransomware": (
                 str(v.get("knownRansomwareCampaignUse", "")).strip().lower()

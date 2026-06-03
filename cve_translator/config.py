@@ -25,10 +25,46 @@ BUNDLED_DIR = DATA_DIR / "bundled"
 OUTPUT_DIR = REPO_ROOT / "output"
 SAMPLE_ASSET_LIST = DATA_DIR / "sample_asset_list.txt"
 
+# Runtime config that the dashboard can write (connectors, preferences).
+CONFIG_DIR = DATA_DIR / "config"
+CONNECTORS_FILE = CONFIG_DIR / "connectors.json"
+PREFERENCES_FILE = CONFIG_DIR / "preferences.json"
+
 # Bundled file names.
 BUNDLED_NVD = BUNDLED_DIR / "nvd_cve_relevant.json.gz"
 BUNDLED_KEV = BUNDLED_DIR / "known_exploited_vulnerabilities.json"
 BUNDLED_EPSS = BUNDLED_DIR / "epss_scores.csv.gz"
+
+# Live import
+# The platform ingests live from the sources named in the project brief. The
+# direct official hosts (cisa.gov, epss.empiricalsecurity.com) are reached
+# through their maintained GitHub mirrors, which is the same data on a host that
+# works behind strict outbound allow-lists. The brief itself names the
+# Fraunhofer FKIE GitHub repository as the recommended NVD source. When the
+# network is unavailable the platform falls back to the bundled real subset, so
+# it always works offline and upgrades itself to live data when it can.
+LIVE_ENABLED_DEFAULT = os.environ.get("VULNIFY_LIVE", "1") != "0"
+
+LIVE_KEV_URL = (
+    "https://raw.githubusercontent.com/CISAgov/kev-data/develop/"
+    "known_exploited_vulnerabilities.json"
+)
+LIVE_EPSS_URL = (
+    "https://raw.githubusercontent.com/empiricalsec/epss_scores/main/"
+    "{year}/epss_scores-{date}.csv.gz"
+)
+LIVE_NVD_URL = (
+    "https://github.com/fkie-cad/nvd-json-data-feeds/releases/latest/download/"
+    "CVE-{year}.json.xz"
+)
+
+# Poll intervals in seconds. KEV and EPSS are small and refresh often; the full
+# NVD corpus is large, so it syncs far less frequently and on demand.
+LIVE_INTERVAL_KEV = int(os.environ.get("VULNIFY_INTERVAL_KEV", "180"))
+LIVE_INTERVAL_EPSS = int(os.environ.get("VULNIFY_INTERVAL_EPSS", "900"))
+LIVE_INTERVAL_NVD = int(os.environ.get("VULNIFY_INTERVAL_NVD", "86400"))
+LIVE_HTTP_TIMEOUT = int(os.environ.get("VULNIFY_HTTP_TIMEOUT", "45"))
+LIVE_EVENT_BUFFER = 200          # rolling live-event ring buffer size
 
 # Normalisation
 # rapidfuzz score (0 to 100). A user supplied name must match a catalogue

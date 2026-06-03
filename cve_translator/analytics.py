@@ -14,6 +14,7 @@ from collections import Counter, defaultdict
 from statistics import mean
 from typing import Dict, List
 
+from . import geo, sectors
 from .normalization import NormalisationResult
 from .ranking import RankedCve
 
@@ -151,6 +152,32 @@ def build_dashboard(
 
     conf_bands = Counter(r.confidence_band for r in ranked)
 
+    # Sector exposure and the sector x severity heatmap.
+    asset_sectors = sectors.build_asset_sector_map(assets)
+    sector_counts: defaultdict = defaultdict(lambda: {"cves": 0, "kev": 0})
+    heat: defaultdict = defaultdict(lambda: Counter())
+    for r in ranked:
+        skey = sectors.sector_for_ranked(r, asset_sectors)
+        sector_counts[skey]["cves"] += 1
+        if r.in_kev:
+            sector_counts[skey]["kev"] += 1
+        heat[skey][r.severity_band] += 1
+
+    by_sector = []
+    for skey, v in sorted(sector_counts.items(), key=lambda x: -x[1]["cves"]):
+        meta = sectors.sector_meta(skey)
+        by_sector.append({**meta, "cves": v["cves"], "kev": v["kev"]})
+
+    heatmap = []
+    for skey in [s["key"] for s in by_sector]:
+        row = heat[skey]
+        meta = sectors.sector_meta(skey)
+        heatmap.append({
+            "key": skey, "name": meta["name"], "color": meta["color"],
+            "cells": [{"sev": s, "value": row.get(s, 0)} for s in SEVERITY_ORDER],
+            "total": sum(row.values()),
+        })
+
     kpis = {
         "relevant_cves": total,
         "kev": len(kev),
@@ -177,11 +204,13 @@ def build_dashboard(
         "severity": severity,
         "epss_bands": epss_bands,
         "status_split": [
-            {"label": "Confirmed", "value": len(kev), "color": "#ff2d55"},
-            {"label": "Unconfirmed", "value": total - len(kev), "color": "#3ba9ff"},
+            {"label": "Confirmed", "value": len(kev), "color": "#ff3b5c"},
+            {"label": "Unconfirmed", "value": total - len(kev), "color": "#18d39a"},
         ],
         "by_category": _top(cat_counts, 8),
         "by_vendor": _top(vendor_counts, 10),
+        "by_sector": by_sector,
+        "heatmap": heatmap,
         "by_cwe": [
             {"label": c, "name": cwe_name(c), "value": n}
             for c, n in cwe_counts.most_common(8)
@@ -193,6 +222,35 @@ def build_dashboard(
             {"label": b, "value": conf_bands.get(b, 0)}
             for b in ("High", "Medium", "Low") if conf_bands.get(b, 0) > 0
         ],
+        "gauges": _gauges(kpis),
+        "threat_map": geo.build_threat_map(ranked),
+        "regions": geo.region_rollup(ranked),
+    }
+
+
+def _gauges(k: dict) -> dict:
+    """Three SOC risk gauges, each a 0 to 100 value with a band label."""
+    confirmed, critical = k["confirmed"], k["critical"]
+    norm_kev = min(1.0, confirmed / 20.0)
+    norm_crit = min(1.0, critical / 30.0)
+    overall = round(100 * (0.45 * norm_kev + 0.30 * norm_crit
+                           + 0.25 * k["max_epss"]))
+    coverage = round(100 * (k["assets_recognised"] / k["assets_supplied"])) \
+        if k["assets_supplied"] else 0
+    exploitation = round(k["max_epss"] * 100)
+
+    def band(v: int) -> str:
+        return "Critical" if v >= 75 else "Elevated" if v >= 45 \
+            else "Guarded" if v >= 20 else "Low"
+
+    return {
+        "overall": {"value": overall, "label": band(overall),
+                    "caption": "Composite exposure index"},
+        "exploitation": {"value": exploitation, "label": band(exploitation),
+                         "caption": "Peak EPSS probability"},
+        "coverage": {"value": coverage,
+                     "label": "Good" if coverage >= 80 else "Partial" if coverage >= 50 else "Low",
+                     "caption": "Assets resolved to CPE"},
     }
 
 

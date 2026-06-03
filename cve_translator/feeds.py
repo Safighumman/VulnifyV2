@@ -55,6 +55,7 @@ def build_import_jobs(
         counts: records loaded per feed key (nvd, kev, epss).
         timings: seconds spent loading per feed key.
     """
+    from .mitigation import feed_mitigation
     jobs: List[dict] = []
     for feed in FEED_CATALOG:
         key = feed["key"]
@@ -67,6 +68,7 @@ def build_import_jobs(
             "duration_s": round(seconds, 3),
             "speed": speed,
             "status": "completed" if records > 0 else "empty",
+            "mitigation": feed_mitigation(key),
         })
     return jobs
 

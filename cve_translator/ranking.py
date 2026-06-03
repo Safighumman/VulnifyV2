@@ -2,8 +2,8 @@
 
 The ordering rule from the brief is: sort by EPSS descending, with KEV entries
 promoted to the top. We implement that with a single combined urgency score so
-the result is one clean, explainable number, following the weighted-scoring
-philosophy of the ThreatOrbit project's ``trust_scoring`` module.
+the result is one clean, explainable number using a transparent weighted-scoring
+approach.
 
     urgency = WEIGHT_EPSS * epss
             + WEIGHT_CVSS * (cvss / 10)
@@ -59,6 +59,11 @@ class RankedCve:
     kev_ransomware: bool
     kev_date_added: str
     kev_short_desc: str
+    kev_vuln_name: str
+    kev_vendor_project: str
+    kev_product: str
+    kev_required_action: str
+    kev_due_date: str
     urgency: float
     confidence: int
     version_refined: bool
@@ -188,6 +193,11 @@ def rank_matches(
                 kev_ransomware=ransomware,
                 kev_date_added=detail.get("dateAdded", ""),
                 kev_short_desc=detail.get("shortDescription", ""),
+                kev_vuln_name=detail.get("vulnerabilityName", ""),
+                kev_vendor_project=detail.get("vendorProject", ""),
+                kev_product=detail.get("product", ""),
+                kev_required_action=detail.get("requiredAction", ""),
+                kev_due_date=detail.get("dueDate", ""),
                 urgency=compute_urgency(epss, cve.cvss_score, in_kev, ransomware),
                 confidence=compute_confidence(
                     cve.vuln_status, cve.cvss_score is not None,

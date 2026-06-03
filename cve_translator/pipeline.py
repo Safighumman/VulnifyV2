@@ -51,6 +51,17 @@ class PipelineResult:
 _CACHE: Optional[LoadedData] = None
 
 
+def current_data() -> Optional[LoadedData]:
+    """Return the currently cached corpus without triggering a load."""
+    return _CACHE
+
+
+def set_cache(data: LoadedData) -> None:
+    """Atomically replace the cached corpus (used by the live ingest engine)."""
+    global _CACHE
+    _CACHE = data
+
+
 def load_data(force: bool = False) -> LoadedData:
     """Load and cache the feed data. Subsequent calls reuse the loaded copy."""
     global _CACHE

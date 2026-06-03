@@ -1,8 +1,7 @@
 """Normalisation: map a messy, user-supplied product name to a canonical CPE.
 
-This mirrors the design philosophy of the ThreatOrbit project's
-``normalization.py``: take inconsistent, human-entered input and resolve it to
-a canonical, machine-usable identity, then be honest about confidence.
+The design philosophy is to take inconsistent, human-entered input and resolve
+it to a canonical, machine-usable identity, then be honest about confidence.
 
 The flow is:
 

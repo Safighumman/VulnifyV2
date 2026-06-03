@@ -1,12 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Vulnify">
   <defs>
-    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#38bdf8"/>
-      <stop offset="1" stop-color="#8b5cff"/>
+    <linearGradient id="vfg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ee6a6"/>
+      <stop offset="1" stop-color="#0fa97a"/>
     </linearGradient>
   </defs>
-  <circle cx="24" cy="24" r="20" fill="none" stroke="url(#lg)" stroke-width="1.4" opacity="0.45"/>
-  <circle cx="40" cy="14" r="1.6" fill="#8b5cff"/>
-  <path d="M24 3 L27.2 20.8 L45 24 L27.2 27.2 L24 45 L20.8 27.2 L3 24 L20.8 20.8 Z" fill="url(#lg)"/>
-  <circle cx="24" cy="24" r="3.1" fill="#0a1020"/>
+  <!-- Shield -->
+  <path d="M24 3.5 L40.5 8.8 V23.5 C40.5 33.7 33.4 40.8 24 44 C14.6 40.8 7.5 33.7 7.5 23.5 V8.8 Z"
+        fill="none" stroke="url(#vfg)" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M24 3.5 L40.5 8.8 V23.5 C40.5 33.7 33.4 40.8 24 44 C14.6 40.8 7.5 33.7 7.5 23.5 V8.8 Z"
+        fill="url(#vfg)" opacity="0.10"/>
+  <!-- Vital-sign pulse forming a V -->
+  <path d="M13 23 H18 L21 16 L24 31 L27 20 L29.5 23 H35"
+        fill="none" stroke="url(#vfg)" stroke-width="2.6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Alert node -->
+  <circle cx="35" cy="23" r="2.1" fill="#f5b73d"/>
 </svg>

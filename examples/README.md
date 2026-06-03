@@ -1,6 +1,6 @@
 # Example asset lists
 
-Drop-in inputs for Lodestar, one per target user in the brief, plus a deliberately
+Drop-in inputs for Vulnify, one per target user in the brief, plus a deliberately
 messy file that shows the normalisation engine at work. Feed any of them to the
 CLI or paste them into the web dashboard.
 
@@ -18,13 +18,20 @@ python cli.py examples/enterprise_datacenter.txt --json examples/outputs/enterpr
 | `enterprise_datacenter.txt` | Large mixed datacenter and endpoint estate | 23 products across operating systems, network, databases, runtimes |
 | `messy_inventory.txt` | Stress test for normalisation | Misspellings, odd casing, renamed products (vSphere, Zoom Workplace, nginx) |
 
-## How Lodestar presents the data (the OpenCTI cues)
+## How Vulnify presents the data (the SOC / OpenCTI cues)
 
 The web dashboard categorises everything the way an analyst expects:
 
-* Imports and feeds. Each offline source (NVD, CISA KEV, EPSS) is shown as an
-  import job with its record count, ingest speed (records per second), format,
-  and the category of intelligence it contributes.
+* Live imports and feeds. Each source (NVD, CISA KEV, EPSS) is ingested live by a
+  background engine and shown with its record count, live status, new-since-last
+  count, format, and how to act on it. It falls back to the bundled subset
+  offline.
+* Live confirmed vs unconfirmed feed. New CISA KEV entries stream in as Confirmed
+  exploitation; rising EPSS scores and new CVEs stream in as Unconfirmed signals.
+* Sector exposure. Every CVE is tagged to an organisation sector (education,
+  finance, healthcare, and so on) with a sector x severity heatmap.
+* Risk gauges and threat map. SOC-style risk gauges and a stylised threat map
+  plot exposure by affected-technology vendor.
 * Confirmed versus unconfirmed. Every CVE is tagged Confirmed when CISA KEV
   records active exploitation in the wild, or Unconfirmed when exploitation is
   only predicted by EPSS. Ransomware linked entries are highlighted.
